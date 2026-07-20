@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hablando con Datos | Consultoría de Calidad Automotriz — Six Sigma, ISO, Core Tools</title>
+<meta name="description" content="Consultoría mexicana desde 2011 en sistemas de gestión y capacitación para la industria automotriz: Core Tools (AMEF, APQP, MSA, SPC, PPAP), Six Sigma, ISO 9001/14001/45001/50001 e IATF 16949. Software de organigramas, DNC, certificación y bolsa de trabajo.">
+<meta name="keywords" content="Six Sigma, ISO 9001, IATF 16949, AMEF, APQP, MSA, SPC, PPAP, Core Tools, capacitación automotriz, consultoría calidad, DNC">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.hablandocondatos.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hablando con Datos | Ingeniería de Calidad Automotriz">
+<meta property="og:description" content="Transformación sistémica de datos en eficiencia operativa. Six Sigma, ISO, Core Tools y software de gestión de capacitación.">
+<meta property="og:image" content="assets/logo.jpg">
+<meta property="og:locale" content="es_MX">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B132B">
+<link rel="icon" href="assets/logo.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hablando con Datos","url":"https://www.hablandocondatos.com","foundingDate":"2011","description":"Consultoría en sistemas de gestión y capacitación para la industria automotriz y manufacturera.","areaServed":"MX","knowsAbout":["Six Sigma","ISO 9001","IATF 16949","Core Tools","AMEF","APQP","MSA","SPC","PPAP"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#0B132B;color:#E6ECF5;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:#FF5722;text-decoration:none}a:hover{color:#FF784E}
+.wrap{max-width:1280px;margin:0 auto}
+.mono{font-family:'IBM Plex Mono',monospace}
+.grot{font-family:'Space Grotesk',sans-serif}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:#FF5722;margin-bottom:12px}
+h2.sec{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 14px}
+section{scroll-margin-top:80px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:#2b3a63;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:#FF5722;border:3px solid #0B132B;box-shadow:0 0 0 1px #FF5722,0 0 14px rgba(255,87,34,.6);cursor:pointer;clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;background:#FF5722;border:3px solid #0B132B;cursor:pointer}
+@keyframes pulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
+@keyframes flow{0%{stroke-dashoffset:120}100%{stroke-dashoffset:0}}
+@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+::selection{background:#FF5722;color:#0B132B}
+.chip{display:inline-flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;color:#22E4E4;border:1px solid rgba(34,228,228,.35);padding:7px 14px;clip-path:polygon(0 0,100% 0,100% 60%,90% 100%,0 100%)}
+.btn-o{display:inline-flex;align-items:center;gap:12px;background:#FF5722;color:#0B132B;font-weight:600;font-size:15px;padding:17px 26px;clip-path:polygon(0 0,100% 0,100% 64%,88% 100%,0 100%);cursor:pointer;border:none}
+.btn-c{display:inline-flex;align-items:center;gap:12px;background:#22E4E4;color:#0B132B;font-weight:600;font-size:15px;padding:15px 26px;clip-path:polygon(0 0,100% 0,100% 64%,90% 100%,0 100%)}
+.btn-g{display:inline-flex;align-items:center;gap:12px;background:transparent;border:1px solid #37456b;color:#E6ECF5;font-weight:600;font-size:15px;padding:17px 26px}
+.stat b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;color:#22E4E4;display:block}
+.stat span{font-size:12.5px;color:#8592b3}
+.fbtn{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;padding:10px 16px;cursor:pointer;clip-path:polygon(0 0,100% 0,100% 62%,86% 100%,0 100%);border:1px solid #37456b;background:transparent;color:#B7C2DB;font-weight:600}
+.fbtn.on{background:#FF5722;border-color:#FF5722;color:#0B132B}
+.card{background:#141f3c;border:1px solid #26365a;padding:26px 24px;clip-path:polygon(0 0,100% 0,100% 88%,90% 100%,0 100%)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:900px){.hero,.diag,.soft2{grid-template-columns:1fr!important}h1.hh{font-size:38px!important}h2.sec{font-size:30px!important}.pipe{grid-template-columns:1fr 1fr!important}.grid3{grid-template-columns:1fr!important}.nav-links{display:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header style="display:flex;align-items:center;justify-content:space-between;padding:22px 32px;position:sticky;top:0;z-index:40;background:rgba(11,19,43,.82);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,87,34,.18)">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:42px;height:42px;border-radius:50%;background:#fff;padding:3px;box-shadow:0 0 0 1px rgba(255,87,34,.5),0 0 16px rgba(255,87,34,.25);flex:none"><img src="assets/logo.jpg" alt="Hablando con Datos" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block"></div>
+<div style="line-height:1"><div class="grot" style="font-weight:700;font-size:17px;letter-spacing:-.01em">Hablando con Datos</div><div class="mono" style="font-size:10px;color:#22E4E4;letter-spacing:.14em">DATA · CALIDAD · MANUFACTURA</div></div>
+</div>
+<nav class="nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
+<a href="#diagnostico" style="color:#B7C2DB">Microdiagnóstico</a>
+<a href="#catalogo" style="color:#B7C2DB">Catálogo</a>
+<a href="#software" style="color:#B7C2DB">Software</a>
+<a href="https://hcd-certificados.vercel.app/" target="_blank" rel="noopener" style="color:#B7C2DB">Plataforma ↗</a>
+<a href="#contacto" style="border:1px solid #22E4E4;color:#22E4E4;padding:10px 18px;clip-path:polygon(0 0,100% 0,100% 62%,82% 100%,0 100%);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em">CONTACTO</a>
+</nav>
+</header>
+
+<section style="position:relative;padding:72px 32px 96px;overflow:hidden">
+<div style="position:absolute;inset:0;background:radial-gradient(900px 500px at 78% 18%,rgba(34,228,228,.10),transparent 60%),radial-gradient(700px 500px at 10% 90%,rgba(255,87,34,.10),transparent 60%);pointer-events:none"></div>
+<div class="hero" style="display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative">
+<div>
+<div class="chip" style="margin-bottom:26px"><span style="width:7px;height:7px;background:#22E4E4;border-radius:50%"></span>SIX SIGMA · ISO / IATF 16949 · CORE TOOLS</div>
+<h1 class="grot hh" style="font-weight:700;font-size:56px;line-height:1.03;letter-spacing:-.025em;margin:0 0 20px;text-wrap:balance">Transformación sistémica de <span style="color:#FF5722">datos</span> en <span style="color:#22E4E4">eficiencia operativa</span>.</h1>
+<p style="font-size:18px;color:#A9B5D1;max-width:520px;margin:0 0 34px">Consultoría de ingeniería de calidad para la industria automotriz y manufacturera desde 2011. Convertimos la variabilidad de tus procesos en estructura, control y certificación.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px"><a href="#diagnostico" class="btn-o">Iniciar Microdiagnóstico <span class="mono">→</span></a><a href="#catalogo" class="btn-g">Ver Catálogo</a></div>
+<div style="display:flex;gap:40px;margin-top:46px;padding-top:26px;border-top:1px solid #1f2b4a;flex-wrap:wrap"><div class="stat"><b>+18</b><span>años en piso de manufactura</span></div><div class="stat"><b>99.9%</b><span>calidad a la primera (FTQ)</span></div><div class="stat"><b>Tier 1/2</b><span>cadena de suministro</span></div></div>
+</div>
+<div style="position:relative;height:440px">
+<div style="position:absolute;inset:0;background:#101a38;clip-path:polygon(6% 0,100% 0,100% 88%,94% 100%,0 100%,0 12%);border:1px solid #22344f;overflow:hidden">
+<div style="position:absolute;inset:0;background-image:linear-gradient(rgba(34,228,228,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(34,228,228,.055) 1px,transparent 1px);background-size:28px 28px"></div>
+<div class="mono" style="position:absolute;top:16px;left:20px;font-size:11px;color:#22E4E4;letter-spacing:.1em">// flujo_datos → estructura</div>
+<svg viewBox="0 0 520 440" style="position:absolute;inset:0;width:100%;height:100%"><g stroke="#22E4E4" stroke-width="1.2" fill="none" opacity=".55" stroke-dasharray="4 5" style="animation:flow 3s linear infinite"><line x1="60" y1="120" x2="200" y2="180"/><line x1="60" y1="230" x2="200" y2="180"/><line x1="90" y1="330" x2="200" y2="260"/><line x1="200" y1="180" x2="330" y2="150"/><line x1="200" y1="260" x2="330" y2="150"/><line x1="200" y1="180" x2="330" y2="300"/><line x1="330" y1="150" x2="440" y2="220"/><line x1="330" y1="300" x2="440" y2="220"/></g><g fill="#FF5722"><circle cx="60" cy="120" r="5" style="animation:pulse 2.4s ease-in-out infinite"/><circle cx="60" cy="230" r="5" style="animation:pulse 2.4s ease-in-out .5s infinite"/><circle cx="90" cy="330" r="5" style="animation:pulse 2.4s ease-in-out 1s infinite"/></g><g fill="#22E4E4"><circle cx="200" cy="180" r="6" style="animation:pulse 2.8s ease-in-out .3s infinite"/><circle cx="200" cy="260" r="6" style="animation:pulse 2.8s ease-in-out .9s infinite"/><circle cx="330" cy="150" r="6" style="animation:pulse 2.8s ease-in-out 1.4s infinite"/><circle cx="330" cy="300" r="6" style="animation:pulse 2.8s ease-in-out .6s infinite"/><circle cx="440" cy="220" r="7" style="animation:pulse 2.8s ease-in-out 1.1s infinite"/></g></svg>
+<div style="position:absolute;right:18px;bottom:26px;width:62%;height:46%;background:repeating-linear-gradient(-45deg,rgba(255,87,34,.14) 0 10px,rgba(255,87,34,.04) 10px 20px);border:1px dashed rgba(255,87,34,.5);clip-path:polygon(0 40%,18% 40%,30% 12%,74% 12%,86% 40%,100% 40%,100% 82%,86% 82%,80% 100%,66% 100%,60% 82%,40% 82%,34% 100%,20% 100%,14% 82%,0 82%);display:grid;place-items:center;animation:drift 6s ease-in-out infinite"><span class="mono" style="font-size:11px;color:#FFB59B;text-align:center;padding:0 8px">estructura automotriz</span></div>
+</div></div>
+</div>
+</section>
+
+<section id="diagnostico" style="padding:64px 32px">
+<div style="max-width:760px;margin-bottom:40px"><div class="eyebrow">01 — EVALUADOR DE MADUREZ</div><h2 class="sec">Microdiagnóstico de calidad en 30 segundos</h2><p style="font-size:16.5px;color:#A9B5D1">Ajusta cada dimensión según la realidad de tu planta. Calculamos tu nivel de madurez y la ruta de intervención recomendada.</p></div>
+<div class="diag" style="display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:start">
+<div style="background:#1C2541;border:1px solid #2a3a5f;clip-path:polygon(0 0,100% 0,100% 94%,96% 100%,0 100%);padding:30px 32px" id="sliders"></div>
+<div style="position:sticky;top:90px;background:linear-gradient(160deg,#12203f,#0d1730);border:1px solid #FF5722;clip-path:polygon(4% 0,100% 0,100% 100%,0 100%,0 8%);padding:32px;overflow:hidden">
+<div class="mono" style="font-size:11px;color:#8592b3;letter-spacing:.12em;margin-bottom:6px">NIVEL DE MADUREZ ESTIMADO</div>
+<div style="display:flex;align-items:baseline;gap:10px"><div class="grot" id="score" style="font-weight:700;font-size:72px;line-height:1;color:#FF5722">44</div><div class="mono" style="font-size:15px;color:#5f6d90">/100</div></div>
+<div class="grot" id="level" style="display:inline-block;margin-top:12px;font-weight:600;font-size:20px;color:#22E4E4">Nivel 3 · Definido</div>
+<div style="height:8px;background:#22344f;margin:20px 0 8px;clip-path:polygon(0 0,100% 0,100% 60%,98% 100%,0 100%)"><div id="bar" style="height:100%;background:linear-gradient(90deg,#FF5722,#22E4E4);width:44%"></div></div>
+<div class="mono" style="display:flex;justify-content:space-between;font-size:9.5px;color:#5f6d90"><span>INICIAL</span><span>OPTIMIZADO</span></div>
+<p id="advice" style="font-size:14px;color:#C3CDE4;margin:20px 0 24px;min-height:66px"></p>
+<a href="#contacto" style="display:block;text-align:center;background:#FF5722;color:#0B132B;font-weight:600;font-size:14.5px;padding:15px;clip-path:polygon(0 0,100% 0,100% 66%,90% 100%,0 100%)">Solicitar diagnóstico completo →</a>
+</div>
+</div>
+</section>
+
+<section id="catalogo" style="padding:64px 32px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:34px"><div style="max-width:640px"><div class="eyebrow">02 — CATÁLOGO DE CURSOS</div><h2 class="sec" style="margin:0">Formación técnica que se aplica en el piso</h2></div><div id="filters" style="display:flex;gap:10px;flex-wrap:wrap"></div></div>
+<div id="courses" class="grid3"></div>
+</section>
+
+<section id="software" style="padding:64px 32px 40px">
+<div style="max-width:700px;margin-bottom:32px"><div class="eyebrow">03 — PLATAFORMA DE SOFTWARE</div><h2 class="sec">Del organigrama a la plantilla óptima</h2><p style="font-size:16.5px;color:#A9B5D1">Un ecosistema para diseñar tu estructura, detectar brechas, capacitar, certificar y conectar talento con bolsa de trabajo.</p><div style="margin-top:22px"><a href="https://hcd-certificados.vercel.app/" target="_blank" rel="noopener" class="btn-c">Entrar a la plataforma HCD Certificados <span class="mono">↗</span></a></div></div>
+<div class="pipe" style="display:grid;grid-template-columns:repeat(5,1fr);margin-bottom:40px">
+<div style="background:#131f3c;border:1px solid #26365a;clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,8% 50%);padding:20px 26px 20px 34px"><div class="mono" style="font-size:11px;color:#22E4E4">01</div><div class="grot" style="font-weight:600;font-size:15px;margin-top:6px">Diseñar organigrama</div></div>
+<div style="background:#131f3c;border:1px solid #26365a;clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,8% 50%);padding:20px 26px 20px 34px"><div class="mono" style="font-size:11px;color:#22E4E4">02</div><div class="grot" style="font-weight:600;font-size:15px;margin-top:6px">Detectar brechas (DNC)</div></div>
+<div style="background:#131f3c;border:1px solid #26365a;clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,8% 50%);padding:20px 26px 20px 34px"><div class="mono" style="font-size:11px;color:#22E4E4">03</div><div class="grot" style="font-weight:600;font-size:15px;margin-top:6px">Capacitar</div></div>
+<div style="background:#131f3c;border:1px solid #26365a;clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,8% 50%);padding:20px 26px 20px 34px"><div class="mono" style="font-size:11px;color:#22E4E4">04</div><div class="grot" style="font-weight:600;font-size:15px;margin-top:6px">Certificar</div></div>
+<div style="background:#131f3c;border:1px solid #26365a;clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,8% 50%);padding:20px 26px 20px 34px"><div class="mono" style="font-size:11px;color:#22E4E4">05</div><div class="grot" style="font-weight:600;font-size:15px;margin-top:6px">Bolsa de trabajo</div></div>
+</div>
+<div class="soft2" style="display:grid;grid-template-columns:1fr 1fr;gap:22px">
+<div style="background:#1C2541;border:1px solid #2a3a5f;clip-path:polygon(0 0,100% 0,100% 90%,90% 100%,0 100%);padding:32px"><div class="mono" style="font-size:11px;color:#22E4E4;letter-spacing:.1em">MÓDULO A</div><h3 class="grot" style="font-weight:700;font-size:26px;margin:10px 0 12px">Organigramas Inteligentes</h3><p style="font-size:14.5px;color:#A9B5D1;margin:0 0 22px">Diseña y versiona la estructura de tu planta con perfiles de puesto, competencias requeridas y span-of-control visual.</p><div style="display:flex;flex-direction:column;gap:10px"><div style="background:#FF5722;color:#0B132B;padding:10px 16px;font-weight:600;font-size:13px;clip-path:polygon(0 0,100% 0,100% 68%,94% 100%,0 100%);align-self:center">Dirección de Planta</div><div style="display:flex;gap:10px;justify-content:center"><div style="background:#22344f;padding:8px 14px;font-size:12px;color:#C3CDE4">Calidad</div><div style="background:#22344f;padding:8px 14px;font-size:12px;color:#C3CDE4">Producción</div><div style="background:#22344f;padding:8px 14px;font-size:12px;color:#C3CDE4">Ingeniería</div></div></div></div>
+<div style="background:#1C2541;border:1px solid #2a3a5f;clip-path:polygon(0 0,100% 0,100% 100%,10% 100%,0 90%);padding:32px"><div class="mono" style="font-size:11px;color:#22E4E4;letter-spacing:.1em">MÓDULO B</div><h3 class="grot" style="font-weight:700;font-size:26px;margin:10px 0 12px">DNC — Detección de Necesidades de Capacitación</h3><p style="font-size:14.5px;color:#A9B5D1;margin:0 0 22px">Cruza competencias del puesto contra el nivel real del colaborador y genera automáticamente el plan de formación y certificación.</p><div style="display:flex;flex-direction:column;gap:12px"><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px"><span style="color:#C3CDE4">Operadores — SPC</span><span class="mono" style="color:#22E4E4">72%</span></div><div style="height:7px;background:#22344f"><div style="height:100%;width:72%;background:#22E4E4"></div></div></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px"><span style="color:#C3CDE4">Ingeniería — Core Tools</span><span class="mono" style="color:#22E4E4">58%</span></div><div style="height:7px;background:#22344f"><div style="height:100%;width:58%;background:#FF5722"></div></div></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px"><span style="color:#C3CDE4">Calidad — IATF 16949</span><span class="mono" style="color:#22E4E4">84%</span></div><div style="height:7px;background:#22344f"><div style="height:100%;width:84%;background:#22E4E4"></div></div></div></div></div>
+</div>
+<div style="margin-top:22px;background:linear-gradient(120deg,#12203f,#0d1730);border:1px solid #22E4E4;clip-path:polygon(0 0,100% 0,100% 74%,96% 100%,0 100%);padding:30px 34px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px"><div><div class="mono" style="font-size:11px;color:#22E4E4;letter-spacing:.1em">MÓDULO C</div><h3 class="grot" style="font-weight:700;font-size:24px;margin:8px 0 4px">Bolsa de Trabajo especializada</h3><p style="font-size:14px;color:#A9B5D1;margin:0">Conecta a tu personal certificado con vacantes Tier 1 y Tier 2 del sector automotriz.</p></div><a href="#contacto" class="btn-c">Explorar bolsa de trabajo →</a></div>
+</section>
+
+<footer id="contacto" style="padding:64px 32px 48px;margin-top:40px;border-top:1px solid #1f2b4a">
+<div class="soft2" style="display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start">
+<div><h2 class="grot" style="font-weight:700;font-size:34px;letter-spacing:-.02em;margin:0 0 14px;max-width:460px">Hablemos de la variabilidad de tus procesos.</h2><p style="font-size:15.5px;color:#A9B5D1;max-width:440px;margin:0 0 24px">Agenda una sesión técnica sin costo. Revisamos tus indicadores de calidad y trazamos la ruta hacia la certificación.</p><div style="display:flex;gap:14px;flex-wrap:wrap"><a href="https://wa.me/522223549353" class="btn-o">Escríbenos por WhatsApp</a><a href="https://www.hablandocondatos.com" class="btn-g" style="padding:15px 24px">www.hablandocondatos.com</a></div></div>
+<div class="mono" style="font-size:12.5px;color:#8592b3;line-height:2"><div class="grot" style="color:#E6ECF5;font-weight:600;font-size:15px;margin-bottom:10px">Servicios</div><div>Core Tools · AMEF · APQP · MSA · SPC · PPAP</div><div>Certificación Six Sigma (Yellow/Green/Black)</div><div>ISO 9001 · 14001 · 45001 · 50001 · IATF 16949</div><div>Software Organigramas + DNC</div><div>Bolsa de trabajo automotriz</div><div style="display:flex;align-items:center;gap:14px;margin-top:18px"><div style="background:#fff;border-radius:8px;padding:8px 12px;display:grid;place-items:center"><img src="assets/aiag-member.png" alt="AIAG Member" style="height:34px;display:block"></div><span style="color:#8592b3;font-size:11px;line-height:1.4">Miembro AIAG · Estándares<br>automotrices AIAG-VDA</span></div></div>
+</div>
+<div class="mono" style="margin-top:48px;padding-top:22px;border-top:1px solid #1f2b4a;display:flex;justify-content:space-between;font-size:11px;color:#5f6d90;flex-wrap:wrap;gap:8px"><span>© 2026 Hablando con Datos — Ingeniería de calidad industrial</span><span>DATA → EFICIENCIA OPERATIVA</span></div>
+</footer>
+</div>
+
+<a href="https://wa.me/522223549353" title="Chatea con nosotros" style="position:fixed;right:26px;bottom:26px;z-index:90;width:60px;height:60px;background:#25D366;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 74%,74% 100%,0 100%);box-shadow:0 10px 30px rgba(0,0,0,.45);animation:drift 4s ease-in-out infinite"><svg viewBox="0 0 32 32" width="30" height="30" fill="#0B132B"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 1-4.8-.3-.4c-1-1.6-1.5-3.4-1.5-5.3C4.9 9.5 9.9 4.9 16 4.9c6.1 0 11.1 4.6 11.1 10.1S22.1 24.8 16 24.8zm6.1-7.6c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.6-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.5 3.8 6 5.3 2.2.9 3 1 4.1.9.7-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.3z"/></svg></a>
+
+<script>
+var dims=[{l:'Control Estadístico de Procesos (SPC)',v:40,h:'Cartas de control, capacidad Cp/Cpk'},{l:'Gestión de Calidad ISO / IATF 16949',v:55,h:'Sistema documentado y auditable'},{l:'Cultura Six Sigma',v:30,h:'Proyectos DMAIC y belts activos'},{l:'Dominio de Core Tools',v:45,h:'AMEF · APQP · MSA · PPAP'},{l:'Capacitación y competencias',v:50,h:'DNC y matriz de habilidades'}];
+var sc=document.getElementById('sliders');
+dims.forEach(function(d,i){var w=document.createElement('div');w.style.cssText='padding:16px 0;border-bottom:1px solid #263455';w.innerHTML='<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px"><span style="font-weight:600;font-size:15px">'+d.l+'</span><span class="mono" style="font-size:14px;color:#22E4E4"><b id="v'+i+'">'+d.v+'</b><span style="color:#5f6d90;font-size:11px">/100</span></span></div><input type="range" min="0" max="100" step="5" value="'+d.v+'" data-i="'+i+'"><div class="mono" style="font-size:10.5px;color:#6a789c;margin-top:8px">'+d.h+'</div>';sc.appendChild(w);});
+function calc(){var t=0;dims.forEach(function(d){t+=d.v;});var s=Math.round(t/dims.length);var lab,adv;if(s<=20){lab='Nivel 1 · Inicial';adv='Procesos reactivos y sin control estadístico. Prioridad: estabilizar con SPC básico y estructurar el sistema de calidad.';}else if(s<=40){lab='Nivel 2 · En Desarrollo';adv='Existen controles aislados. Recomendamos implementar Core Tools (AMEF, APQP) y una DNC formal del personal.';}else if(s<=60){lab='Nivel 3 · Definido';adv='Sistema documentado y repetible. Es el momento de escalar con proyectos Six Sigma Green Belt y preparar la certificación IATF.';}else if(s<=80){lab='Nivel 4 · Gestionado';adv='Procesos medidos y bajo control. Enfoca en reducción de variabilidad avanzada y desarrollo de Black Belts internos.';}else{lab='Nivel 5 · Optimizado';adv='Cultura de mejora continua madura (World Class). Optimicemos con analítica avanzada y certificación de tu talento vía bolsa de trabajo.';}document.getElementById('score').textContent=s;document.getElementById('level').textContent=lab;document.getElementById('advice').textContent=adv;document.getElementById('bar').style.width=s+'%';}
+sc.addEventListener('input',function(e){if(e.target.type==='range'){var i=+e.target.dataset.i;dims[i].v=+e.target.value;document.getElementById('v'+i).textContent=e.target.value;calc();}});calc();
+var cats=[{id:'all',l:'Todos'},{id:'core',l:'Core Tools'},{id:'sixsigma',l:'Six Sigma'},{id:'iso',l:'ISO / IATF'}];
+var meta={core:{l:'CORE TOOLS',c:'#FF5722'},sixsigma:{l:'SIX SIGMA',c:'#22E4E4'},iso:{l:'ISO / IATF',c:'#22E4E4'}};
+var courses=[{cat:'core',code:'CT-01',t:'AMEF de Diseño y Proceso',d:'Análisis de modos y efectos de falla (DFMEA/PFMEA) según AIAG-VDA.',du:'16 h'},{cat:'core',code:'CT-02',t:'APQP & PPAP',d:'Planeación avanzada de la calidad del producto y aprobación de partes.',du:'20 h'},{cat:'core',code:'CT-03',t:'MSA — Sistemas de Medición',d:'Estudios R&R, sesgo y linealidad para asegurar datos confiables.',du:'12 h'},{cat:'core',code:'CT-04',t:'SPC — Control Estadístico',d:'Cartas de control, capacidad Cp/Cpk y estabilidad del proceso.',du:'14 h'},{cat:'sixsigma',code:'SS-YB',t:'Six Sigma Yellow Belt',d:'Fundamentos DMAIC y participación en proyectos de mejora.',du:'24 h'},{cat:'sixsigma',code:'SS-GB',t:'Six Sigma Green Belt',d:'Liderazgo de proyectos DMAIC con herramientas estadísticas.',du:'80 h'},{cat:'sixsigma',code:'SS-BB',t:'Six Sigma Black Belt',d:'Diseño de experimentos, análisis multivariado y gestión de portafolio.',du:'160 h'},{cat:'iso',code:'IS-01',t:'ISO 9001:2015',d:'Implementación y auditoría del sistema de gestión de calidad.',du:'24 h'},{cat:'iso',code:'IS-02',t:'IATF 16949',d:'Requisitos específicos del sector automotriz y auditoría de proceso.',du:'32 h'}];
+var active='all';var fc=document.getElementById('filters');var cc=document.getElementById('courses');
+cats.forEach(function(c){var b=document.createElement('button');b.className='fbtn'+(c.id==='all'?' on':'');b.textContent=c.l;b.onclick=function(){active=c.id;Array.prototype.forEach.call(fc.children,function(x,j){x.className='fbtn'+(cats[j].id===active?' on':'');});render();};fc.appendChild(b);});
+function render(){cc.innerHTML='';courses.filter(function(c){return active==='all'||c.cat===active;}).forEach(function(c){var m=meta[c.cat];var el=document.createElement('div');el.className='card';el.innerHTML='<div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:18px"><span class="mono" style="font-size:10.5px;letter-spacing:.1em;padding:5px 10px;color:'+m.c+';border:1px solid '+m.c+';clip-path:polygon(0 0,100% 0,100% 55%,88% 100%,0 100%)">'+m.l+'</span><span class="grot" style="font-weight:700;font-size:13px;color:#5f6d90">'+c.code+'</span></div><h3 class="grot" style="font-weight:600;font-size:21px;line-height:1.15;margin:0 0 10px">'+c.t+'</h3><p style="font-size:13.5px;color:#93a0c1;margin:0 0 20px">'+c.d+'</p><div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid #263455"><span class="mono" style="font-size:12px;color:#A9B5D1">'+c.du+'</span><span style="font-size:13px;font-weight:600;color:#FF5722">Ver módulo →</span></div>';cc.appendChild(el);});}render();
+</script>
+</body>
+</html>

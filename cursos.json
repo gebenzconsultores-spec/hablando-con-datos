@@ -1,0 +1,82 @@
+{
+  "_instrucciones": "EDITA ESTE ARCHIVO PARA ACTUALIZAR EL CALENDARIO. No necesitas tocar el index.html. Campos: fecha (AAAA-MM-DD), titulo, categoria ('CORE TOOLS' | 'SIX SIGMA' | 'ISO / IATF'), horario, sede, lugares (0 = lista de espera), objetivo (texto para SEO y ventana de detalle). El curso con la fecha MAS PROXIMA se resalta automaticamente con la promocion por cercania. Los cursos con fecha pasada se ocultan solos.",
+  "promocion": {
+    "activa": true,
+    "etiqueta": "PROMOCIÓN POR CERCANÍA",
+    "texto": "Inscríbete antes del inicio y obtén precio preferencial en este curso."
+  },
+  "cursos": [
+    {
+      "fecha": "2026-08-03",
+      "titulo": "GD&T — Dimensionamiento Geométrico y Tolerancias",
+      "categoria": "CORE TOOLS",
+      "horario": "Inicio 3 ago",
+      "sede": "Online en vivo",
+      "lugares": 8,
+      "objetivo": "Interpretar y aplicar el lenguaje de dimensionamiento geométrico y tolerancias según ASME Y14.5 para reducir rechazos por interpretación de planos y asegurar el ensamble correcto de componentes."
+    },
+    {
+      "fecha": "2026-08-10",
+      "titulo": "TISAX — Seguridad de la Información Automotriz",
+      "categoria": "ISO / IATF",
+      "horario": "Inicio 10 ago",
+      "sede": "Online en vivo",
+      "lugares": 10,
+      "objetivo": "Comprender los requisitos del catálogo VDA ISA y preparar a la organización para la evaluación TISAX, protegiendo la información sensible de tus clientes automotrices."
+    },
+    {
+      "fecha": "2026-08-19",
+      "titulo": "Auditor Interno IATF 16949",
+      "categoria": "ISO / IATF",
+      "horario": "Inicio 19 ago",
+      "sede": "Online en vivo",
+      "lugares": 6,
+      "objetivo": "Formar auditores internos capaces de planear, ejecutar y reportar auditorías de sistema, proceso y producto conforme a IATF 16949 y las reglas de certificación vigentes."
+    },
+    {
+      "fecha": "2026-08-26",
+      "titulo": "SPC AIAG-VDA — Control Estadístico de Proceso",
+      "categoria": "CORE TOOLS",
+      "horario": "Inicio 26 ago",
+      "sede": "Online en vivo",
+      "lugares": 12,
+      "objetivo": "Interpretar cartas de control y calcular la capacidad del proceso (Cp/Cpk, Pp/Ppk) para mantener procesos estables, predecibles y centrados en especificaciones."
+    },
+    {
+      "fecha": "2026-09-02",
+      "titulo": "8D's — Solución de Problemas",
+      "categoria": "CORE TOOLS",
+      "horario": "Inicio 2 sep",
+      "sede": "Online en vivo",
+      "lugares": 10,
+      "objetivo": "Aplicar la metodología de las 8 disciplinas para atender reclamos de cliente, encontrar la causa raíz real y evitar la recurrencia del problema con acciones verificadas."
+    },
+    {
+      "fecha": "2026-09-08",
+      "titulo": "ISO 19011:2026 — Auditoría de Sistemas de Gestión",
+      "categoria": "ISO / IATF",
+      "horario": "Inicio 8 sep",
+      "sede": "Online en vivo",
+      "lugares": 8,
+      "objetivo": "Dominar las directrices para auditar sistemas de gestión: programa de auditoría, competencia del auditor, enfoque basado en riesgos y redacción efectiva de hallazgos."
+    },
+    {
+      "fecha": "2026-09-17",
+      "titulo": "AMEFP AIAG-VDA — Análisis de Modos de Falla",
+      "categoria": "CORE TOOLS",
+      "horario": "Inicio 17 sep",
+      "sede": "Online en vivo",
+      "lugares": 9,
+      "objetivo": "Desarrollar el AMEF de proceso con el enfoque de 7 pasos AIAG-VDA, priorizando por acción (AP) y ligando los controles al plan de control para prevenir defectos."
+    },
+    {
+      "fecha": "2026-09-26",
+      "titulo": "Diplomado Lean Six Sigma Green Belt",
+      "categoria": "SIX SIGMA",
+      "horario": "Híbrido · clases grabadas",
+      "sede": "Fecha tentativa · sede por confirmar",
+      "lugares": 15,
+      "objetivo": "Liderar proyectos DMAIC aplicando herramientas Lean y estadísticas para reducir variación, desperdicio y costos de la no calidad con impacto financiero medible."
+    }
+  ]
+}

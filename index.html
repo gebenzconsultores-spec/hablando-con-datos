@@ -47,6 +47,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;background:#FF5722;bo
 .fbtn.on{background:#FF5722;border-color:#FF5722;color:#0B132B}
 .card{background:#141f3c;border:1px solid #26365a;padding:26px 24px;clip-path:polygon(0 0,100% 0,100% 88%,90% 100%,0 100%)}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:1040px){.hcd-heroviz{height:auto!important;aspect-ratio:900/450}}
 @media(max-width:1200px){h1.hh{font-size:42px!important}h2.sec{font-size:32px!important}.grid3{grid-template-columns:repeat(2,1fr)!important}}
 @media(max-width:1040px){.hero,.diag,.soft2{grid-template-columns:1fr!important}.hero{gap:36px!important}}
 @media(max-width:900px){
@@ -66,6 +67,10 @@ section,header,footer{padding-left:20px!important;padding-right:20px!important}
 .hcd-buildwrap{transform:scale(.7);transform-origin:top center;height:200px}
 }
 @keyframes hcd-pulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
+@keyframes hcd-current{to{stroke-dashoffset:-32}}
+@keyframes hcd-cell{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes hcd-spin{to{transform:rotate(360deg)}}
+@keyframes hcd-scan{0%{transform:translateX(0);opacity:0}10%{opacity:.28}90%{opacity:.28}100%{transform:translateX(900px);opacity:0}}
 @keyframes hcd-appear{0%,8%{opacity:0;transform:translateY(8px) scale(.9)}16%,92%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:1}}
 @keyframes hcd-grow{0%,8%{opacity:0;transform:scaleY(0)}16%,92%{opacity:1;transform:scaleY(1)}100%{opacity:1;transform:scaleY(1)}}
 .hcd-build{opacity:0;animation-duration:7s;animation-iteration-count:infinite;animation-timing-function:ease-in-out}
@@ -104,12 +109,89 @@ section,header,footer{padding-left:20px!important;padding-right:20px!important}
 <div style="display:flex;flex-wrap:wrap;gap:16px"><a href="#diagnostico" class="btn-o">Iniciar Microdiagnóstico <span class="mono">→</span></a><a href="#catalogo" class="btn-g">Ver Catálogo</a></div>
 <div style="display:flex;gap:40px;margin-top:46px;padding-top:26px;border-top:1px solid #1f2b4a;flex-wrap:wrap"><div class="stat"><b>+28</b><span>años de experiencia</span></div><div class="stat"><b>99.9%</b><span>calidad a la primera (FTQ)</span></div><div class="stat"><b>Tier 1/2</b><span>cadena de suministro</span></div></div>
 </div>
-<div style="position:relative;height:440px">
+<div class="hcd-heroviz" style="position:relative;height:440px">
 <div style="position:absolute;inset:0;background:#101a38;clip-path:polygon(6% 0,100% 0,100% 88%,94% 100%,0 100%,0 12%);border:1px solid #22344f;overflow:hidden">
 <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(34,228,228,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(34,228,228,.055) 1px,transparent 1px);background-size:28px 28px"></div>
 <div class="mono" style="position:absolute;top:16px;left:20px;font-size:11px;color:#22E4E4;letter-spacing:.1em">// flujo_datos → estructura</div>
-<svg viewBox="0 0 520 440" style="position:absolute;inset:0;width:100%;height:100%"><g stroke="#22E4E4" stroke-width="1.2" fill="none" opacity=".55" stroke-dasharray="4 5" style="animation:flow 3s linear infinite"><line x1="60" y1="120" x2="200" y2="180"/><line x1="60" y1="230" x2="200" y2="180"/><line x1="90" y1="330" x2="200" y2="260"/><line x1="200" y1="180" x2="330" y2="150"/><line x1="200" y1="260" x2="330" y2="150"/><line x1="200" y1="180" x2="330" y2="300"/><line x1="330" y1="150" x2="440" y2="220"/><line x1="330" y1="300" x2="440" y2="220"/></g><g fill="#FF5722"><circle cx="60" cy="120" r="5" style="animation:pulse 2.4s ease-in-out infinite"/><circle cx="60" cy="230" r="5" style="animation:pulse 2.4s ease-in-out .5s infinite"/><circle cx="90" cy="330" r="5" style="animation:pulse 2.4s ease-in-out 1s infinite"/></g><g fill="#22E4E4"><circle cx="200" cy="180" r="6" style="animation:pulse 2.8s ease-in-out .3s infinite"/><circle cx="200" cy="260" r="6" style="animation:pulse 2.8s ease-in-out .9s infinite"/><circle cx="330" cy="150" r="6" style="animation:pulse 2.8s ease-in-out 1.4s infinite"/><circle cx="330" cy="300" r="6" style="animation:pulse 2.8s ease-in-out .6s infinite"/><circle cx="440" cy="220" r="7" style="animation:pulse 2.8s ease-in-out 1.1s infinite"/></g></svg>
-<div style="position:absolute;right:18px;bottom:26px;width:62%;height:46%;background:repeating-linear-gradient(-45deg,rgba(255,87,34,.14) 0 10px,rgba(255,87,34,.04) 10px 20px);border:1px dashed rgba(255,87,34,.5);clip-path:polygon(0 40%,18% 40%,30% 12%,74% 12%,86% 40%,100% 40%,100% 82%,86% 82%,80% 100%,66% 100%,60% 82%,40% 82%,34% 100%,20% 100%,14% 82%,0 82%);display:grid;place-items:center;animation:drift 6s ease-in-out infinite"><span class="mono" style="font-size:11px;color:#FFB59B;text-align:center;padding:0 8px">estructura automotriz</span></div>
+<svg viewBox="0 0 900 450" preserveAspectRatio="xMidYMid meet" style="position: absolute; inset: 0; width: 100%; height: 100%;">
+            <defs>
+              <linearGradient id="hcdGlass" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#22E4E4" stop-opacity="0.10"></stop>
+                <stop offset="100%" stop-color="#FF5722" stop-opacity="0.04"></stop>
+              </linearGradient>
+              <filter id="hcdGlow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="3.4" result="b"></feGaussianBlur>
+                <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+              </filter>
+            </defs>
+
+            <!-- chasis wireframe blueprint -->
+            <g filter="url(#hcdGlow)">
+              <path d="M315,320 L364,320 C377,271 441,271 453,320 L655,320 C667,271 731,271 744,320 L826,320 L860,291 L860,255 L747,237 L606,190 L438,190 L373,245 L300,276 Z"
+                fill="url(#hcdGlass)" stroke="#22E4E4" stroke-width="1.6" stroke-opacity="0.9"></path>
+              <path d="M438,190 L606,190 L747,237 M373,245 L860,255 M300,276 L860,291" stroke="#22E4E4" stroke-width="0.8" stroke-opacity="0.42" fill="none"></path>
+              <path d="M453,190 L440,276 M523,190 L517,278 M606,196 L615,284 M690,216 L696,288 M775,244 L778,290" stroke="#22E4E4" stroke-width="0.6" stroke-opacity="0.3" fill="none"></path>
+              <path d="M381,242 L432,197 L497,197 L476,272 Z" fill="#22E4E4" fill-opacity="0.07" stroke="#22E4E4" stroke-width="0.8" stroke-opacity="0.5"></path>
+            </g>
+
+            <!-- ejes / motores -->
+            <g fill="none" stroke="#22E4E4">
+              <circle cx="409" cy="320" r="26" stroke-width="1.1" stroke-opacity="0.55" stroke-dasharray="4 4" style="animation: hcd-spin 9s linear infinite; transform-origin: 409px 320px;"></circle>
+              <circle cx="699" cy="320" r="26" stroke-width="1.1" stroke-opacity="0.55" stroke-dasharray="4 4" style="animation: hcd-spin 9s linear infinite reverse; transform-origin: 699px 320px;"></circle>
+              <circle cx="409" cy="320" r="9" stroke-width="1.3" stroke-opacity="0.9"></circle>
+              <circle cx="699" cy="320" r="9" stroke-width="1.3" stroke-opacity="0.9"></circle>
+            </g>
+
+            <!-- paquete de baterias -->
+            <g>
+              <rect x="468" y="291" width="178" height="20" fill="#22E4E4" fill-opacity="0.10" stroke="#22E4E4" stroke-width="1.1" stroke-opacity="0.75"></rect>
+              <g fill="#22E4E4">
+                <circle cx="484" cy="301" r="3.4" style="animation: hcd-cell 2.6s ease-in-out infinite;"></circle>
+                <circle cx="507" cy="301" r="3.4" style="animation: hcd-cell 2.6s ease-in-out infinite 0.2s;"></circle>
+                <circle cx="530" cy="301" r="3.4" style="animation: hcd-cell 2.6s ease-in-out infinite 0.4s;"></circle>
+                <circle cx="553" cy="301" r="3.4" style="animation: hcd-cell 2.6s ease-in-out infinite 0.6s;"></circle>
+                <circle cx="576" cy="301" r="3.4" style="animation: hcd-cell 2.6s ease-in-out infinite 0.8s;"></circle>
+                <circle cx="599" cy="301" r="3.4" style="animation: hcd-cell 2.6s ease-in-out infinite 1s;"></circle>
+                <circle cx="622" cy="301" r="3.4" style="animation: hcd-cell 2.6s ease-in-out infinite 1.2s;"></circle>
+              </g>
+            </g>
+
+            <!-- corriente: bateria -> motores -->
+            <g fill="none" stroke-linecap="round">
+              <path d="M480,302 L440,312 L418,319" stroke="#22E4E4" stroke-width="1.8" stroke-opacity="0.9" stroke-dasharray="6 13" style="animation: hcd-current 1.5s linear infinite;"></path>
+              <path d="M630,302 L672,312 L690,319" stroke="#22E4E4" stroke-width="1.8" stroke-opacity="0.9" stroke-dasharray="6 13" style="animation: hcd-current 1.5s linear infinite 0.3s;"></path>
+              <path d="M556,291 L556,256 L640,238" stroke="#FF5722" stroke-width="1.4" stroke-opacity="0.75" stroke-dasharray="5 12" style="animation: hcd-current 1.9s linear infinite;"></path>
+            </g>
+
+            <!-- red de datos que alimenta la estructura -->
+            <g stroke="#22E4E4" stroke-width="1.1" fill="none" opacity="0.5" stroke-dasharray="4 7" style="animation: hcd-flow 3s linear infinite;">
+              <line x1="60" y1="110" x2="185" y2="150"></line>
+              <line x1="60" y1="215" x2="185" y2="150"></line>
+              <line x1="95" y1="305" x2="185" y2="255"></line>
+              <line x1="185" y1="150" x2="300" y2="190"></line>
+              <line x1="185" y1="255" x2="300" y2="190"></line>
+              <line x1="300" y1="190" x2="438" y2="190"></line>
+              <line x1="300" y1="190" x2="373" y2="245"></line>
+              <line x1="185" y1="255" x2="300" y2="276"></line>
+            </g>
+            <g fill="#FF5722">
+              <circle cx="60" cy="110" r="6" style="animation: hcd-pulse 2.4s ease-in-out infinite;"></circle>
+              <circle cx="60" cy="215" r="6" style="animation: hcd-pulse 2.4s ease-in-out infinite 0.5s;"></circle>
+              <circle cx="95" cy="305" r="6" style="animation: hcd-pulse 2.4s ease-in-out infinite 1s;"></circle>
+            </g>
+            <g fill="#22E4E4" filter="url(#hcdGlow)">
+              <circle cx="185" cy="150" r="6" style="animation: hcd-pulse 2.8s ease-in-out infinite 0.3s;"></circle>
+              <circle cx="185" cy="255" r="6" style="animation: hcd-pulse 2.8s ease-in-out infinite 0.9s;"></circle>
+              <circle cx="300" cy="190" r="7" style="animation: hcd-pulse 2.8s ease-in-out infinite 1.4s;"></circle>
+            </g>
+
+            <!-- barrido de escaneo -->
+            <line x1="0" y1="0" x2="0" y2="450" stroke="#22E4E4" stroke-width="1.6" stroke-opacity="0.28" style="animation: hcd-scan 6s linear infinite;"></line>
+          </svg>
+
+          <div style="position: absolute; bottom: 22px; left: 20px; display: flex; align-items: center; gap: 9px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #FFB59B;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #FF5722; animation: hcd-pulse 1.6s ease-in-out infinite;"></span>render: chasis / arquitectura ev estructural
+          </div>
 </div></div>
 </div>
 </section>
@@ -195,7 +277,7 @@ section,header,footer{padding-left:20px!important;padding-right:20px!important}
 </footer>
 </div>
 
-<section aria-label="Detalle de cursos y capacitaciones" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px"><h2>Cursos de capacitación industrial — Hablando con Datos</h2><p>Hablando con Datos es una consultora mexicana fundada en 2011, con más de 28 años de experiencia acumulada en sistemas de gestión, calidad y capacitación para la industria automotriz, manufacturera y de cualquier sector. Miembro AIAG. Cursos en línea en vivo e in-company en México.</p><div id="seoc"></div><h3>Servicios de consultoría</h3><p>Implementación y auditoría de ISO 9001, ISO 14001, ISO 45001, ISO 50001, ISO 19011 e IATF 16949. Core Tools automotrices AIAG-VDA: AMEF (FMEA), APQP, MSA, SPC y PPAP. Metodologías Lean Six Sigma Yellow, Green y Black Belt, DOE, GD&amp;T, 8D's y TISAX. Software de gestión de capacitación: organigramas inteligentes, detección de necesidades de capacitación (DNC), control de certificaciones y bolsa de trabajo especializada.</p><h3>Contacto</h3><p>Correo de ventas: ventas@hablandocondatos.com.mx. Sitio web: www.hablandocondatos.com. Atención por WhatsApp. Cotiza tu capacitación en línea.</p></section>
+<section aria-label="Detalle de cursos y capacitaciones" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px"><h2>Cursos de capacitación industrial — Hablando con Datos</h2><p>Hablando con Datos es una consultora mexicana fundada en 2011, con más de 28 años de experiencia acumulada en sistemas de gestión, calidad y capacitación para la industria automotriz, manufacturera y de cualquier sector. Miembro AIAG. Cursos en línea en vivo e in-company en México.</p><div id="seoc"></div><h3>Calendario de próximos cursos con fechas confirmadas</h3><div id="seoev"></div><h3>Preguntas frecuentes</h3><p>¿Los cursos son en línea? Sí, la mayoría se imparte en línea en vivo con instructor, y también ofrecemos modalidad in-company en tu planta. ¿Entregan constancia? Sí, cada participante recibe constancia de capacitación y material didáctico. ¿Puedo cotizar para un grupo? Sí, cotizamos capacitación para grupos y programas anuales completos. ¿En qué normas certifican? ISO 9001, ISO 14001, ISO 45001, ISO 50001, ISO 19011 e IATF 16949, además de Core Tools AIAG-VDA y Lean Six Sigma.</p><h3>Servicios de consultoría</h3><p>Implementación y auditoría de ISO 9001, ISO 14001, ISO 45001, ISO 50001, ISO 19011 e IATF 16949. Core Tools automotrices AIAG-VDA: AMEF (FMEA), APQP, MSA, SPC y PPAP. Metodologías Lean Six Sigma Yellow, Green y Black Belt, DOE, GD&amp;T, 8D's y TISAX. Software de gestión de capacitación: organigramas inteligentes, detección de necesidades de capacitación (DNC), control de certificaciones y bolsa de trabajo especializada.</p><h3>Contacto</h3><p>Correo de ventas: ventas@hablandocondatos.com.mx. Sitio web: www.hablandocondatos.com. Atención por WhatsApp. Cotiza tu capacitación en línea.</p></section>
 <div id="modal" onclick="if(event.target===this)closeModal()" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(5,9,20,.82);backdrop-filter:blur(6px);place-items:center;padding:24px"><div style="position:relative;width:100%;max-width:560px;background:linear-gradient(160deg,#14203f,#0d1730);border:1px solid #FF5722;clip-path:polygon(4% 0,100% 0,100% 92%,96% 100%,0 100%,0 8%);padding:40px 44px"><div id="mbody"></div><div onclick="closeModal()" style="position:absolute;top:18px;right:22px;width:30px;height:30px;display:grid;place-items:center;cursor:pointer;color:#8592b3;font-size:22px" class="grot">×</div></div></div>
 <a href="https://wa.me/522223549353" title="Chatea con nosotros" style="position:fixed;right:26px;bottom:26px;z-index:90;width:60px;height:60px;background:#25D366;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 74%,74% 100%,0 100%);box-shadow:0 10px 30px rgba(0,0,0,.45);animation:drift 4s ease-in-out infinite"><svg viewBox="0 0 32 32" width="30" height="30" fill="#0B132B"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 1-4.8-.3-.4c-1-1.6-1.5-3.4-1.5-5.3C4.9 9.5 9.9 4.9 16 4.9c6.1 0 11.1 4.6 11.1 10.1S22.1 24.8 16 24.8zm6.1-7.6c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.6-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.5 3.8 6 5.3 2.2.9 3 1 4.1.9.7-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.3z"/></svg></a>
 
@@ -215,9 +297,45 @@ function closeModal(){document.getElementById('modal').style.display='none';}
 function render(){cc.innerHTML='';courses.filter(function(c){return active==='all'||c.cat===active;}).forEach(function(c){var m=meta[c.cat];var el=document.createElement('div');el.className='card';el.innerHTML='<div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:18px"><span class="mono" style="font-size:10.5px;letter-spacing:.1em;padding:5px 10px;color:'+m.c+';border:1px solid '+m.c+';clip-path:polygon(0 0,100% 0,100% 55%,88% 100%,0 100%)">'+m.l+'</span><span class="grot" style="font-weight:700;font-size:13px;color:#5f6d90">'+c.code+'</span></div><h3 class="grot" style="font-weight:600;font-size:21px;line-height:1.15;margin:0 0 10px">'+c.t+'</h3><p style="font-size:13.5px;color:#93a0c1;margin:0 0 20px">'+c.d+'</p><div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid #263455"><span class="mono" style="font-size:12px;color:#A9B5D1">'+c.du+'</span><span class="vermod" style="font-size:13px;font-weight:600;color:#FF5722;cursor:pointer">Ver módulo →</span></div>';el.querySelector('.vermod').addEventListener('click',function(){openModal(c);});cc.appendChild(el);});}render();
 
 var number='522223549353';
-var evRaw=[{day:'03',month:'AGO',title:'GD&T — Dimensionamiento Geométrico y Tolerancias',tag:'CORE TOOLS',tagColor:'#FF5722',time:'Inicio 3 ago',venue:'Online en vivo',seats:8},{day:'10',month:'AGO',title:'TISAX — Seguridad de la Información Automotriz',tag:'ISO / IATF',tagColor:'#22E4E4',time:'Inicio 10 ago',venue:'Online en vivo',seats:10},{day:'19',month:'AGO',title:'Auditor Interno IATF 16949',tag:'ISO / IATF',tagColor:'#22E4E4',time:'Inicio 19 ago',venue:'Online en vivo',seats:6},{day:'26',month:'AGO',title:'SPC AIAG-VDA — Control Estadístico de Proceso',tag:'CORE TOOLS',tagColor:'#FF5722',time:'Inicio 26 ago',venue:'Online en vivo',seats:12},{day:'02',month:'SEP',title:"8D's — Solución de Problemas",tag:'CORE TOOLS',tagColor:'#FF5722',time:'Inicio 2 sep',venue:'Online en vivo',seats:10},{day:'08',month:'SEP',title:'ISO 19011:2026 — Auditoría de Sistemas de Gestión',tag:'ISO / IATF',tagColor:'#22E4E4',time:'Inicio 8 sep',venue:'Online en vivo',seats:8},{day:'17',month:'SEP',title:'AMEFP AIAG-VDA — Análisis de Modos de Falla',tag:'CORE TOOLS',tagColor:'#FF5722',time:'Inicio 17 sep',venue:'Online en vivo',seats:9},{day:'26',month:'SEP',title:'Diplomado Lean Six Sigma Green Belt',tag:'SIX SIGMA',tagColor:'#22E4E4',time:'Híbrido · clases grabadas',venue:'Fecha tentativa · sede por confirmar',seats:15}];
+
+var MES=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+var TAGC={'CORE TOOLS':'#FF5722','SIX SIGMA':'#22E4E4','ISO / IATF':'#22E4E4'};
 var ec=document.getElementById('events');
-evRaw.forEach(function(e){var full=e.seats<=0;var low=!full&&e.seats<=5;var seatColor=full?'#8592b3':(low?'#FF5722':'#22E4E4');var seatsLabel=full?'Lista de espera':(e.seats+' lugares disponibles');var ctaLabel=full?'Lista de espera':'Agendar lugar →';var ctaBg=full?'#5f6d90':'#FF5722';var link='https://wa.me/'+number+'?text='+encodeURIComponent((full?'Quiero unirme a la lista de espera del curso: ':'Quiero agendar mi lugar en el curso: ')+e.title+' ('+e.day+' '+e.month+').');var el=document.createElement('div');el.className='hcd-ev';el.style.cssText='display:grid;grid-template-columns:96px 1fr auto;gap:24px;align-items:center;background:#141f3c;border:1px solid #26365a;clip-path:polygon(0 0,100% 0,100% 82%,97% 100%,0 100%);padding:20px 26px';el.innerHTML='<div style="text-align:center;border-right:1px solid #263455;padding-right:20px"><div class="grot" style="font-weight:700;font-size:34px;line-height:1;color:#FF5722">'+e.day+'</div><div class="mono" style="font-size:11px;color:#22E4E4;letter-spacing:.12em;margin-top:4px">'+e.month+'</div></div><div><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="mono" style="font-size:10px;letter-spacing:.1em;padding:4px 9px;color:'+e.tagColor+';border:1px solid '+e.tagColor+';clip-path:polygon(0 0,100% 0,100% 55%,88% 100%,0 100%)">'+e.tag+'</span><h3 class="grot" style="font-weight:600;font-size:19px;margin:0">'+e.title+'</h3></div><div class="mono" style="font-size:12px;color:#93a0c1;margin-top:8px;display:flex;gap:18px;flex-wrap:wrap"><span>◷ '+e.time+'</span><span>⚲ '+e.venue+'</span><span style="color:'+seatColor+'">● '+seatsLabel+'</span></div></div><a href="'+link+'" style="background:'+ctaBg+';color:#0B132B;font-weight:600;font-size:13.5px;padding:13px 22px;clip-path:polygon(0 0,100% 0,100% 64%,88% 100%,0 100%);white-space:nowrap">'+ctaLabel+'</a>';ec.appendChild(el);});
+var FB='https://www.facebook.com/hablando.condatos?locale=es_LA';
+var LI='https://www.linkedin.com/company/hablando-con-datos/';
+function renderCal(feed){
+  ec.innerHTML='';
+  var promo=(feed&&feed.promocion)||{activa:true,etiqueta:'PROMOCIÓN POR CERCANÍA',texto:'Inscríbete antes del inicio y obtén precio preferencial en este curso.'};
+  var today=new Date();today.setHours(0,0,0,0);
+  var list=((feed&&feed.cursos)||[]).map(function(c){return {c:c,d:new Date(c.fecha+'T00:00:00')};})
+    .filter(function(x){return !isNaN(x.d)&&x.d>=today;})
+    .sort(function(a,b){return a.d-b.d;});
+  var seoc=document.getElementById('seoev');if(seoc)seoc.innerHTML='';
+  var schema=[];
+  list.forEach(function(x,i){
+    var c=x.c,d=x.d;
+    var day=String(d.getDate()).padStart(2,'0'),month=MES[d.getMonth()];
+    var seats=typeof c.lugares==='number'?c.lugares:10;
+    var full=seats<=0,low=!full&&seats<=5;
+    var next=i===0&&promo.activa!==false;
+    var tagColor=TAGC[c.categoria]||'#FF5722';
+    var seatsLabel=full?'Lista de espera':(seats+' lugares disponibles');
+    var seatColor=full?'#8592b3':(low?'#FF5722':'#22E4E4');
+    var link='https://wa.me/'+number+'?text='+encodeURIComponent((full?'Quiero unirme a la lista de espera del curso: ':'Quiero agendar mi lugar en el curso: ')+c.titulo+' ('+day+' '+month+').');
+    var el=document.createElement('div');el.className='hcd-ev';
+    el.style.cssText='display:grid;grid-template-columns:96px 1fr auto;gap:24px;align-items:center;padding:20px 26px;position:relative;clip-path:polygon(0 0,100% 0,100% 82%,97% 100%,0 100%);'+(next?'background:linear-gradient(120deg,#1d2547,#141f3c);border:1px solid #FF5722;box-shadow:0 0 34px rgba(255,87,34,.18)':'background:#141f3c;border:1px solid #26365a');
+    var promoTop=next?'<div class="mono" style="display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.12em;color:#0B132B;background:#FF5722;padding:5px 11px;margin-bottom:10px;clip-path:polygon(0 0,100% 0,100% 58%,92% 100%,0 100%)"><span style="width:6px;height:6px;border-radius:50%;background:#0B132B;animation:hcd-pulse 1.5s ease-in-out infinite"></span>'+(promo.etiqueta||'PROMOCIÓN POR CERCANÍA')+'</div>':'';
+    var promoBot=next?'<div style="margin-top:12px;padding-top:12px;border-top:1px dashed rgba(255,87,34,.4)"><p style="font-size:13px;color:#FFB59B;margin:0 0 10px;line-height:1.45">'+(promo.texto||'')+'</p><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="verev mono" style="font-size:11px;letter-spacing:.06em;color:#22E4E4;border:1px solid #22E4E4;padding:7px 13px;cursor:pointer;clip-path:polygon(0 0,100% 0,100% 60%,90% 100%,0 100%)">Conocer más sobre la capacitación →</span><a href="'+FB+'" target="_blank" rel="noopener" title="Ver contenido en Facebook" style="display:grid;place-items:center;width:30px;height:30px;border:1px solid #37456b;color:#E6ECF5"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.13-2.47-.13-2.44 0-4.13 1.5-4.13 4.23v2.36H7.3V13h2.8v8h3.4z"/></svg></a><a href="'+LI+'" target="_blank" rel="noopener" title="Ver contenido en LinkedIn" style="display:grid;place-items:center;width:30px;height:30px;border:1px solid #37456b;color:#E6ECF5"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M6.94 5A1.94 1.94 0 1 1 3.06 5a1.94 1.94 0 0 1 3.88 0zM3.3 8.5h3.3V21H3.3V8.5zM9.4 8.5h3.16v1.7h.05c.44-.83 1.5-1.7 3.1-1.7 3.32 0 3.93 2.18 3.93 5.02V21h-3.3v-5.55c0-1.32-.03-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93V21H9.4V8.5z"/></svg></a><span class="mono" style="font-size:10px;color:#6a789c">contenido del curso en redes</span></div></div>':'';
+    el.innerHTML='<div style="text-align:center;border-right:1px solid #263455;padding-right:20px"><div class="grot" style="font-weight:700;font-size:34px;line-height:1;color:'+(next?'#0B132B':'#FF5722')+';background:'+(next?'#FF5722':'transparent')+'">'+day+'</div><div class="mono" style="font-size:11px;color:#22E4E4;letter-spacing:.12em;margin-top:4px">'+month+'</div></div><div>'+promoTop+'<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="mono" style="font-size:10px;letter-spacing:.1em;padding:4px 9px;color:'+tagColor+';border:1px solid '+tagColor+';clip-path:polygon(0 0,100% 0,100% 55%,88% 100%,0 100%)">'+(c.categoria||'')+'</span><h3 class="grot" style="font-weight:600;font-size:19px;margin:0">'+c.titulo+'</h3></div><div class="mono" style="font-size:12px;color:#93a0c1;margin-top:8px;display:flex;gap:18px;flex-wrap:wrap"><span>◷ '+(c.horario||'')+'</span><span>⚲ '+(c.sede||'')+'</span><span style="color:'+seatColor+'">● '+seatsLabel+'</span></div>'+promoBot+'</div><a href="'+link+'" style="background:'+(full?'#5f6d90':'#FF5722')+';color:#0B132B;font-weight:600;font-size:13.5px;padding:13px 22px;clip-path:polygon(0 0,100% 0,100% 64%,88% 100%,0 100%);white-space:nowrap">'+(full?'Lista de espera':'Agendar lugar →')+'</a>';
+    var vm=el.querySelector('.verev');
+    if(vm)vm.addEventListener('click',function(){openModal({cat:'core',code:day+' '+month,t:c.titulo,d:c.sede||'',du:c.horario||'',obj:c.objetivo||'Solicita el programa completo por WhatsApp o correo.'});});
+    ec.appendChild(el);
+    if(seoc){var a=document.createElement('article');a.innerHTML='<h4>'+c.titulo+' — inicia '+day+' '+month+'</h4><p>Modalidad: '+(c.sede||'')+'. Horario: '+(c.horario||'')+'. Disponibilidad: '+seatsLabel+'. Categoría: '+(c.categoria||'')+'.</p><p>'+(c.objetivo||'')+'</p>';seoc.appendChild(a);}
+    schema.push({'@type':'Course',position:i+1,name:c.titulo,description:c.objetivo||'',provider:{'@type':'Organization',name:'Hablando con Datos',url:'https://www.hablandocondatos.com'},inLanguage:'es-MX',courseMode:/online/i.test(c.sede||'')?'online':'blended',hasCourseInstance:{'@type':'CourseInstance',startDate:c.fecha,courseMode:/online/i.test(c.sede||'')?'online':'blended',location:{'@type':'Place',name:c.sede||'Online en vivo'}}});
+  });
+  var t=document.createElement('script');t.type='application/ld+json';t.textContent=JSON.stringify({'@context':'https://schema.org','@type':'ItemList',name:'Calendario de cursos — Hablando con Datos',itemListElement:schema});document.head.appendChild(t);
+}
+fetch('cursos.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(f){if(f)renderCal(f);}).catch(function(){});
 var sc2=document.getElementById('seoc');if(sc2){courses.forEach(function(c){var a=document.createElement('article');a.innerHTML='<h3>'+c.t+'</h3><p>'+c.d+'</p><p>Objetivo del curso: '+c.obj+'</p><p>Duración: '+c.du+'. Clave: '+c.code+'. Modalidad: en línea en vivo o in-company. Incluye constancia y material didáctico. Imparte Hablando con Datos, consultoría en calidad e ingeniería industrial.</p>';sc2.appendChild(a);});}
 function copyMail(){var m='ventas@hablandocondatos.com.mx';var hint=document.getElementById('mailhint');function done(){hint.textContent='✓ CORREO COPIADO';setTimeout(function(){hint.textContent='CORREO DE VENTAS · CLIC PARA COPIAR';},2200);}
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(m).then(done,done);return;}

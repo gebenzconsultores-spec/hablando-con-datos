@@ -7,10 +7,10 @@
   },
   "cursos": [
     {
-      "fecha": "2026-08-17",
+      "fecha": "2026-08-12",
       "titulo": "GD&T — Dimensionamiento Geométrico y Tolerancias",
       "categoria": "CORE TOOLS",
-      "horario": "Inicio 3 ago",
+      "horario": "Inicio 12 ago",
       "sede": "Online en vivo",
       "lugares": 8,
       "objetivo": "Interpretar y aplicar el lenguaje de dimensionamiento geométrico y tolerancias según ASME Y14.5 para reducir rechazos por interpretación de planos y asegurar el ensamble correcto de componentes."

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -337,6 +337,9 @@ section,header,footer{padding-left:20px!important;padding-right:20px!important}
 
 <script>
 var WA='522223549353';
+/* Registro automático: pega aquí tu endpoint de Formspree (https://formspree.io/f/xxxxxxx).
+   Si lo dejas vacío el sitio funciona igual: el registro llega por WhatsApp y correo. */
+var FORM_ENDPOINT='https://formspree.io/f/xdengbgy';
 var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
 var QS=[
     { dim: "SG", cat: "Sistema de Gestión (ISO / IATF)", tag: "ISO 9001 · IATF 16949", tagColor: "#22E4E4",
@@ -556,6 +559,8 @@ function chkReg(){var b=document.getElementById('f_btn'),ok=regOk();b.style.back
 function sendReg(){if(!regOk())return;
 var msg='INSCRIPCIÓN A CURSO\nCurso: '+regC.t+' ('+regC.c+')\nDuración: '+regC.d+'\nNombre: '+document.getElementById('f_nom').value+'\nEmpresa: '+document.getElementById('f_emp').value+'\nCorreo: '+document.getElementById('f_mail').value+'\nTeléfono: '+document.getElementById('f_tel').value+'\nParticipantes: '+document.getElementById('f_part').value;
 var enc=encodeURIComponent(msg);
+var payload={curso:regC.t,clave:regC.c,detalle:regC.d,nombre:document.getElementById('f_nom').value,empresa:document.getElementById('f_emp').value,correo:document.getElementById('f_mail').value,telefono:document.getElementById('f_tel').value,participantes:document.getElementById('f_part').value,fecha_solicitud:new Date().toLocaleString('es-MX'),_subject:'Nuevo registro: '+regC.t};
+if(FORM_ENDPOINT){try{fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)}).catch(function(){});}catch(e){}}
 document.getElementById('rbody').innerHTML='<div class="mono" style="font-size:11px;color:#22E4E4;letter-spacing:.14em;margin-bottom:10px">✓ REGISTRO ENVIADO</div>'+
 '<h3 class="grot" style="font-weight:700;font-size:25px;line-height:1.15;margin:0 0 8px">'+esc(regC.t)+'</h3>'+
 '<p style="font-size:14.5px;color:#A9B5D1;line-height:1.55;margin:0 0 24px">Tu solicitud quedó registrada. Solo falta confirmarla por WhatsApp para que te enviemos el precio, el método de pago y apartemos tu lugar.</p>'+

@@ -338,7 +338,7 @@ section,header,footer{padding-left:20px!important;padding-right:20px!important}
 
 
 
-<a href="https://wa.me/522223549353" title="Chatea con nosotros" style="position:fixed;right:26px;bottom:26px;z-index:90;width:60px;height:60px;background:#25D366;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 74%,74% 100%,0 100%);box-shadow:0 10px 30px rgba(0,0,0,.45);animation:hcd-drift 4s ease-in-out infinite"><svg viewBox="0 0 32 32" width="30" height="30" fill="#0B132B"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 1-4.8-.3-.4c-1-1.6-1.5-3.4-1.5-5.3C4.9 9.5 9.9 4.9 16 4.9c6.1 0 11.1 4.6 11.1 10.1S22.1 24.8 16 24.8zm6.1-7.6c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.6-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.5 3.8 6 5.3 2.2.9 3 1 4.1.9.7-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.3z"/></svg></a>
+<a id="wafloat" href="https://wa.me/522223549353" title="Chatea con nosotros" style="position:fixed;right:26px;bottom:26px;z-index:90;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease;width:60px;height:60px;background:#25D366;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 74%,74% 100%,0 100%);box-shadow:0 10px 30px rgba(0,0,0,.45);animation:hcd-drift 4s ease-in-out infinite"><svg viewBox="0 0 32 32" width="30" height="30" fill="#0B132B"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 1-4.8-.3-.4c-1-1.6-1.5-3.4-1.5-5.3C4.9 9.5 9.9 4.9 16 4.9c6.1 0 11.1 4.6 11.1 10.1S22.1 24.8 16 24.8zm6.1-7.6c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.6-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.5 3.8 6 5.3 2.2.9 3 1 4.1.9.7-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.3z"/></svg></a>
 
 <script>
 var WA='522223549353';
@@ -621,5 +621,45 @@ sc.innerHTML=COURSES.map(function(c){return '<article><h3>'+esc(c.title)+'</h3><
 
 renderQ();renderCourses();
 </script>
+
+<!-- ACCESOS - pestana oculta. Solo visible en hablandocondatos.com/#accesos -->
+<div id="accesos" style="display:none;position:fixed;inset:0;z-index:200;background:#0B132B;overflow-y:auto;padding:28px 24px 64px">
+<div style="max-width:1400px;margin:0 auto">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;background:linear-gradient(120deg,#1b2a52,#141f3c);border:1px solid #22344f;clip-path:polygon(0 0,100% 0,100% 82%,97% 100%,0 100%);padding:26px 28px;margin-bottom:26px">
+<div>
+<div class="mono" style="font-size:11px;color:#E23A22;letter-spacing:.16em;margin-bottom:8px">ACCESO RESTRINGIDO / CREDENCIALES</div>
+<h1 class="grot" style="font-weight:700;font-size:30px;line-height:1.1;margin:0 0 10px;color:#E6ECF5">Acceso a Plataforma — Coats</h1>
+<p style="font-size:14.5px;color:#A9B5D1;line-height:1.55;max-width:760px;margin:0">Busca tu nombre o ID de alumno. Escanea el código QR con la cámara de tu celular para obtener tu contraseña y confirmar tus credenciales por WhatsApp.</p>
+</div>
+<a href="#" onclick="closeAccesos()" class="mono" style="flex:none;border:1px solid #2b3a63;color:#A9B5D1;padding:10px 16px;font-size:11px;letter-spacing:.1em;clip-path:polygon(0 0,100% 0,100% 64%,84% 100%,0 100%)">CERRAR</a>
+</div>
+<input type="text" id="acSearch" placeholder="Buscar por nombre o ID de alumno..." oninput="filterAccesos()" style="width:100%;padding:15px 20px;background:#131f3c;border:1px solid #2b3a63;color:#E6ECF5;font-family:'IBM Plex Sans',sans-serif;font-size:15.5px;outline:none;clip-path:polygon(0 0,100% 0,100% 74%,99% 100%,0 100%);margin-bottom:26px">
+<div id="acGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px"></div>
+<div class="mono" style="text-align:center;color:#5f6d90;font-size:11px;letter-spacing:.1em;margin-top:44px">HABLANDO CON DATOS — SISTEMA DE CREDENCIALES DE ACCESO</div>
+</div>
+</div>
+<script>
+var ACC=[{"id":"ALU-0062","n":"MONTSERRAT TELIZ LOPEZ","p":"HCD-9695"},{"id":"ALU-0061","n":"DANIELA LOPEZ QUINTERO","p":"HCD-4346"},{"id":"ALU-0060","n":"ALFREDO ILLESCAS HERNANDEZ","p":"HCD-3441"},{"id":"ALU-0059","n":"GABRIEL HERMINIO MORENO CANDIA","p":"HCD-9101"},{"id":"ALU-0058","n":"OMAR GONZALEZ ALARCON","p":"HCD-6613"},{"id":"ALU-0057","n":"CARLOS MANUEL RAMIREZ HERNANDEZ","p":"HCD-9048"},{"id":"ALU-0056","n":"MARCO ANTONIO HERNANDEZ SANCHEZ","p":"HCD-5895"},{"id":"ALU-0055","n":"VICTOR ALFONSO HERNANDEZ OREA","p":"HCD-6691"},{"id":"ALU-0054","n":"JULIAN CONTRERAS GUTIERREZ","p":"HCD-3216"},{"id":"ALU-0053","n":"BERNARDO ARGUELLES ARGUELLES","p":"HCD-3508"},{"id":"ALU-0052","n":"FATIMA CORTES ORTIZ","p":"HCD-3553"},{"id":"ALU-0051","n":"ABRAHAN NEFTALI BRAVO ROSAS","p":"HCD-6276"},{"id":"ALU-0050","n":"EDNA ROMERO VELAZQUEZ","p":"HCD-5849"},{"id":"ALU-0049","n":"ILSE YISEL PEREZ ALVARADO","p":"HCD-8509"},{"id":"ALU-0048","n":"ANDRES ABREGO VILLEGAS","p":"HCD-2876"},{"id":"ALU-0047","n":"ROSARIO LOBATO CHAVEZ","p":"HCD-9741"}];
+var accBuilt=false;
+function accMsg(a){return 'https://wa.me/522223549353?text='+encodeURIComponent('Quiero confirmar mis credenciales: '+a.n+', ID: '+a.id+', Contraseña: '+a.p);}
+function buildAccesos(){if(accBuilt)return;accBuilt=true;
+document.getElementById("acGrid").innerHTML=ACC.map(function(a,i){return '<div class="ac-card" data-s="'+(a.n+" "+a.id).toLowerCase()+'" style="background:#141f3c;border:1px solid #22344f;clip-path:polygon(0 0,100% 0,100% 92%,93% 100%,0 100%);padding:22px 20px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">'+
+'<div class="grot" style="font-weight:700;font-size:17px;line-height:1.25;color:#E6ECF5;min-height:42px;display:flex;align-items:center">'+a.n+'</div>'+
+'<div class="mono" style="display:flex;align-items:center;gap:10px;font-size:12px;color:#A9B5D1;letter-spacing:.08em">ID ALUMNO <span style="color:#22E4E4;background:#0f1a33;border:1px solid #22344f;padding:5px 10px;font-size:13px;letter-spacing:.12em">'+a.id+'</span></div>'+
+'<div id="acqr'+i+'" style="background:#fff;padding:10px;line-height:0"></div>'+
+'<a href="'+accMsg(a)+'" target="_blank" rel="noopener" style="width:100%;background:#E23A22;color:#FFFFFF;font-weight:600;font-size:14px;padding:12px 14px;text-align:center;clip-path:polygon(0 0,100% 0,100% 66%,92% 100%,0 100%)">Confirmar por WhatsApp</a>'+
+'</div>';}).join("");
+var go=function(){ACC.forEach(function(a,i){var c=document.getElementById("acqr"+i);if(c&&window.QRCode)new QRCode(c,{text:accMsg(a),width:140,height:140,colorDark:"#0B132B",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});});};
+if(window.QRCode){go();}else{var s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";s.onload=go;document.head.appendChild(s);}}
+function filterAccesos(){var q=document.getElementById("acSearch").value.toLowerCase();Array.prototype.forEach.call(document.querySelectorAll(".ac-card"),function(c){c.style.display=c.getAttribute("data-s").indexOf(q)>-1?"flex":"none";});}
+function isAccesosRoute(){var hs=(location.hash||"").toLowerCase().replace(/^#\/?/,"");var pt=(location.pathname||"").toLowerCase().replace(/\/$/,"");return hs==="accesos"||pt.slice(-8)==="/accesos";}
+function syncAccesos(){var el=document.getElementById("accesos"),wa=document.getElementById("wafloat");
+if(isAccesosRoute()){buildAccesos();el.style.display="block";document.documentElement.style.overflow="hidden";if(wa)wa.style.display="none";}
+else{el.style.display="none";document.documentElement.style.overflow="";if(wa)wa.style.display="";}}
+function closeAccesos(){if(location.hash)location.hash="";else location.href=location.pathname.replace(/accesos\/?$/,"");setTimeout(syncAccesos,0);}
+window.addEventListener("hashchange",syncAccesos);syncAccesos();
+(function(){var wa=document.getElementById("wafloat");if(!wa)return;function t(){var on=window.scrollY>window.innerHeight*0.85;wa.style.opacity=on?"1":"0";wa.style.visibility=on?"visible":"hidden";}window.addEventListener("scroll",t,{passive:true});window.addEventListener("resize",t);t();})();
+</script>
+
 </body>
 </html>

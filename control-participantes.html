@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control interno — Participantes | Hablando con Datos</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0B132B;color:#E6ECF5;font-family:'IBM Plex Sans',system-ui,sans-serif;line-height:1.5;padding:32px 24px 64px}
+.wrap{max-width:1180px;margin:0 auto}
+.mono{font-family:'IBM Plex Mono',monospace}
+.grot{font-family:'Space Grotesk',sans-serif}
+a{color:#22E4E4;text-decoration:none}
+.inp{background:#0d1730;border:1px solid #2b3a63;color:#E6ECF5;font-family:'IBM Plex Sans',sans-serif;font-size:14px;padding:12px 14px;outline:none;width:100%}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#E23A22;color:#fff;font-weight:600;font-size:14px;padding:13px 22px;clip-path:polygon(0 0,100% 0,100% 66%,92% 100%,0 100%);cursor:pointer;border:none;font-family:'IBM Plex Sans',sans-serif}
+.btn.g{background:transparent;border:1px solid #37456b;color:#E6ECF5;clip-path:none}
+.card{background:#141f3c;border:1px solid #26365a;padding:18px;clip-path:polygon(0 0,100% 0,100% 90%,94% 100%,0 100%);display:flex;gap:16px;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.k{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;color:#22E4E4;letter-spacing:.02em}
+.gate{max-width:420px;margin:12vh auto;background:#141f3c;border:1px solid #26365a;padding:34px}
+@media print{body{background:#fff;color:#000;padding:0}.noprint{display:none!important}.card{background:#fff;border:1px solid #999;clip-path:none;break-inside:avoid}.k,.grot{color:#000!important}.mono{color:#333!important}}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <div class="mono" style="font-size:10.5px;letter-spacing:.14em;color:#E23A22;margin-bottom:10px">ACCESO RESTRINGIDO</div>
+  <h1 class="grot" style="font-weight:700;font-size:22px;line-height:1.2;margin-bottom:8px">Control interno de participantes</h1>
+  <p style="font-size:13.5px;color:#A9B5D1;margin-bottom:20px">Esta página contiene claves de acceso. Introduce el código interno para continuar.</p>
+  <input id="pin" class="inp" type="password" placeholder="Código interno" onkeydown="if(event.key==='Enter')abrir()">
+  <div id="err" class="mono" style="font-size:11.5px;color:#FF6B6B;margin-top:8px;display:none">Código incorrecto.</div>
+  <div class="btn" style="width:100%;margin-top:16px" onclick="abrir()">Entrar</div>
+</div>
+
+<div id="app" class="wrap" style="display:none">
+  <div class="noprint" style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid #1f2b4a">
+    <div>
+      <div class="mono" style="font-size:10.5px;letter-spacing:.14em;color:#E23A22;margin-bottom:8px">CONTROL INTERNO · NO PÚBLICO</div>
+      <h1 class="grot" style="font-weight:700;font-size:28px;line-height:1.1">Participantes — <span id="grupo"></span></h1>
+      <div class="mono" style="font-size:11.5px;color:#7f8db0;margin-top:6px"><span id="total"></span> registros · actualizado <span id="fecha"></span></div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div class="btn g" onclick="window.print()">Imprimir / PDF</div>
+      <div class="btn g" onclick="exportCsv()">Exportar CSV</div>
+      <div class="btn" onclick="toggleQr()"><span id="qrlbl">Mostrar QR</span></div>
+    </div>
+  </div>
+
+  <div class="noprint" style="margin-bottom:20px">
+    <input id="q" class="inp" type="search" placeholder="Buscar por nombre, ID o clave" oninput="render()" autocomplete="off" style="max-width:520px">
+  </div>
+
+  <div id="list" class="grid"></div>
+  <div id="empty" class="mono" style="display:none;font-size:13px;color:#7f8db0;margin-top:10px"></div>
+
+  <p class="noprint mono" style="font-size:11px;color:#5f6d90;line-height:1.7;margin-top:32px;padding-top:18px;border-top:1px solid #1f2b4a">
+    Esta página no está enlazada desde el sitio y lleva etiqueta noindex, por lo que no aparece en buscadores.<br>
+    Aun así vive en un servidor público: cualquiera con la URL y el código puede verla. No la compartas por canales abiertos.
+  </p>
+</div>
+
+<script>
+var PIN='HCD2026';
+var DATA={
+  grupo:'Coats',
+  actualizado:'2026-09-21',
+  participantes:[
+    {id:'ALU-0078',nombre:'María del Pilar Suárez García',clave:'HCD-3586'},
+    {id:'ALU-0077',nombre:'Carlos Manuel Ramírez Hernández',clave:'HCD-7802'},
+    {id:'ALU-0062',nombre:'Montserrat Téliz López',clave:'HCD-9695'},
+    {id:'ALU-0061',nombre:'Daniela López Quintero',clave:'HCD-4346'},
+    {id:'ALU-0060',nombre:'Alfredo Illescas Hernández',clave:'HCD-3441'},
+    {id:'ALU-0059',nombre:'Gabriel Herminio Moreno Candia',clave:'HCD-9101'},
+    {id:'ALU-0058',nombre:'Omar González Alarcón',clave:'HCD-6613'},
+    {id:'ALU-0057',nombre:'Maritza González Pacheco',clave:'HCD-9048'},
+    {id:'ALU-0056',nombre:'Marco Antonio Hernández Sánchez',clave:'HCD-5895'},
+    {id:'ALU-0055',nombre:'Víctor Alfonso Hernández Orea',clave:'HCD-6691'},
+    {id:'ALU-0054',nombre:'Julián Contreras Gutiérrez',clave:'HCD-3216'},
+    {id:'ALU-0053',nombre:'Bernardo Arguelles Arguelles',clave:'HCD-3508'},
+    {id:'ALU-0052',nombre:'Fátima Cortés Ortiz',clave:'HCD-3553'},
+    {id:'ALU-0051',nombre:'Abrahan Neftalí Bravo Rosas',clave:'HCD-6276'},
+    {id:'ALU-0050',nombre:'Edna Romero Velázquez',clave:'HCD-5849'},
+    {id:'ALU-0049',nombre:'Ilse Yisel Pérez Alvarado',clave:'HCD-8509'},
+    {id:'ALU-0048',nombre:'Andrés Abrego Villegas',clave:'HCD-2876'},
+    {id:'ALU-0047',nombre:'Rosario Lobato Chávez',clave:'HCD-9741'}
+  ]
+};
+var PORTAL='https://hcd-certificados.vercel.app/';
+var showQr=false;
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function abrir(){
+  if(document.getElementById('pin').value.trim()!==PIN){document.getElementById('err').style.display='block';return;}
+  try{sessionStorage.setItem('hcd_ok','1');}catch(e){}
+  document.getElementById('gate').style.display='none';
+  document.getElementById('app').style.display='block';
+  document.getElementById('grupo').textContent=DATA.grupo;
+  document.getElementById('total').textContent=DATA.participantes.length;
+  document.getElementById('fecha').textContent=DATA.actualizado;
+  render();
+}
+function toggleQr(){showQr=!showQr;document.getElementById('qrlbl').textContent=showQr?'Ocultar QR':'Mostrar QR';render();}
+function render(){
+  var q=norm((document.getElementById('q')||{}).value||'').trim();
+  var list=q?DATA.participantes.filter(function(p){return norm(p.nombre).indexOf(q)>-1||norm(p.id).indexOf(q)>-1||norm(p.clave).indexOf(q)>-1;}):DATA.participantes;
+  var em=document.getElementById('empty');
+  if(!list.length){em.style.display='block';em.textContent='Sin resultados.';}else{em.style.display='none';}
+  document.getElementById('list').innerHTML=list.map(function(p){
+    var payload=PORTAL+'?id='+encodeURIComponent(p.id)+'&k='+encodeURIComponent(p.clave);
+    var qr=showQr?'<img alt="QR '+esc(p.id)+'" src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&margin=0&data='+encodeURIComponent(payload)+'" style="width:76px;height:76px;flex:none;background:#fff;padding:5px">':'';
+    return '<div class="card">'+qr+'<div style="flex:1;min-width:0">'+
+      '<div class="mono" style="font-size:10.5px;color:#E23A22;letter-spacing:.08em">'+esc(p.id)+'</div>'+
+      '<div class="grot" style="font-weight:600;font-size:15.5px;line-height:1.25;margin:3px 0 7px">'+esc(p.nombre)+'</div>'+
+      '<div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap"><span class="mono" style="font-size:9.5px;color:#7f8db0;letter-spacing:.1em">CLAVE</span><span class="k">'+esc(p.clave)+'</span>'+
+      '<span class="noprint mono" style="font-size:10px;color:#6a789c;border:1px solid #2b3a63;padding:3px 8px;cursor:pointer" onclick="copiar(\''+esc(p.clave)+'\',this)">copiar</span></div>'+
+      '</div></div>';
+  }).join('');
+}
+function copiar(t,el){
+  var old=el.textContent;
+  function ok(){el.textContent='copiado';setTimeout(function(){el.textContent=old;},1400);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,ok);return;}
+  var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);ok();
+}
+function exportCsv(){
+  var rows=[['ID Alumno','Nombre','Clave portal']].concat(DATA.participantes.map(function(p){return [p.id,p.nombre,p.clave];}));
+  var csv='\ufeff'+rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\r\n');
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='participantes_'+DATA.actualizado+'_'+DATA.grupo+'.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+}
+try{if(sessionStorage.getItem('hcd_ok')==='1'){document.getElementById('pin').value=PIN;abrir();}}catch(e){}
+</script>
+</body>
+</html>

@@ -7,10 +7,10 @@
   },
   "cursos": [
     {
-      "fecha": "2026-08-17",
-      "titulo": "GD&T — Dimensionamiento Geométrico y Tolerancias",
+      "fecha": "2026-10-15",
+      "titulo": "5´s — Productividad y Eficiencia",
       "categoria": "CORE TOOLS",
-      "horario": "Inicio 17 ago",
+      "horario": "Inicio 15 oct",
       "sede": "Online en vivo",
       "lugares": 8,
       "objetivo": "Interpretar y aplicar el lenguaje de dimensionamiento geométrico y tolerancias según ASME Y14.5 para reducir rechazos por interpretación de planos y asegurar el ensamble correcto de componentes."
@@ -70,7 +70,7 @@
       "objetivo": "Desarrollar el AMEF de proceso con el enfoque de 7 pasos AIAG-VDA, priorizando por acción (AP) y ligando los controles al plan de control para prevenir defectos."
     },
     {
-      "fecha": "2026-09-26",
+      "fecha": "2026-11-26",
       "titulo": "Diplomado Lean Six Sigma Green Belt",
       "categoria": "SIX SIGMA",
       "horario": "Híbrido · clases grabadas",

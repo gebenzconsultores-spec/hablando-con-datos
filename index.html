@@ -319,7 +319,10 @@ class Component extends DCLogic {
     { cat: 'Evidencia y documentos', tag: 'Registros · 7.1.5 / 7.5.3', title: '¿Puedes mostrar en minutos la evidencia que pide el auditor (registros, calibraciones, constancias)?', opts: [{ t: 'Nos cuesta encontrarla; está dispersa o en papel.', s: 25, f: 'M', a: 'Evidencia no disponible (7.5.3 / 7.1.5): la falta de registros de calibración o de competencia suele levantarse como no conformidad mayor.' }, { t: 'La encontramos, pero con faltantes o documentos vencidos.', s: 50, f: 'm', a: 'Registros incompletos o vencidos (7.1.5 / 7.5.3): no conformidad menor.' }, { t: 'Registros digitales organizados por requisito.', s: 75 }, { t: 'Sistema centralizado con alertas de vencimiento.', s: 100 }] }
   ];
 
-  componentDidMount() { this._t = setTimeout(() => this.init(), 30); }
+  componentDidMount() {
+    this._t = setTimeout(() => this.init(), 30);
+    this._v = setTimeout(() => document.querySelectorAll('video').forEach(v => { v.muted = true; v.defaultMuted = true; v.setAttribute('muted', ''); const p = v.play(); if (p) p.catch(() => {}); }), 60);
+  }
   componentWillUnmount() { clearTimeout(this._t); cancelAnimationFrame(this.raf); (this.off || []).forEach(f => f()); if (this.io) this.io.disconnect(); }
   on(t, ev, fn, o) { t.addEventListener(ev, fn, o); (this.off = this.off || []).push(() => t.removeEventListener(ev, fn, o)); }
 
@@ -505,12 +508,12 @@ class Component extends DCLogic {
     const cursos = [
       ['2026-10-14', '', 'Herramientas básicas de calidad', 'Core Tools', 'assets/4hcd.jpg'],
       ['2026-10-15', '', "5S's", 'Lean Six Sigma', 'assets/7hcd.jpg'],
-      ['2026-10-21', '', 'Formación de auditores internos ISO 19011:2026', 'Sistemas de Gestión', 'assets/2hcd.jpg'],
+      ['2026-10-21', '22', 'Formación de auditores internos ISO 19011:2026', 'Sistemas de Gestión', 'assets/2hcd.jpg'],
       ['2026-10-27', '', 'Actualización ISO 14001:2026', 'Sistemas de Gestión', 'assets/ihcd.jpg'],
       ['2026-11-04', '', 'Introducción al GD&T', 'Core Tools', 'assets/5hcd.jpg'],
       ['2026-11-11', '', 'TISAX', 'Sistemas de Gestión', 'assets/6hcd.jpg'],
       ['2026-11-18', '', 'Plan de control', 'Core Tools', 'assets/4hcd.jpg'],
-      ['2026-11-25', '', 'Interpretación de ISO 9001:2026', 'Sistemas de Gestión', 'assets/2hcd.jpg'],
+      ['2026-11-25', '26', 'Interpretación de ISO 9001:2026', 'Sistemas de Gestión', 'assets/2hcd.jpg'],
       ['2026-11-30', '', 'Mapeo de Procesos', 'Lean Six Sigma', 'assets/ihcd.jpg']
     ].map(([fe, fin, titulo, categoria, img], i) => ({ d: fe.slice(8) + (fin ? '–' + fin : ''), m: MES[+fe.slice(5, 7) - 1], titulo, categoria, img, lug: 'Cupo limitado', promo: i === 0, wa: waT(`Hola, quiero reservar mi lugar en ${titulo} (${fe.slice(8)}${fin ? ' y ' + fin : ''} de ${MESL[+fe.slice(5, 7) - 1]}).`) }));
     const setF = k => e => { const v = e.target.value; this.setState(s => ({ f: { ...s.f, [k]: v }, err: '' })); };

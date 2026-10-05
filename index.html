@@ -160,6 +160,17 @@ input::placeholder{color:rgba(255,255,255,.4)}
 <div style="border-top:1px solid #070F22">
 <sc-for list="{{ clients }}" as="c" hint-placeholder-count="6"><div data-r="up" data-d="{{ c.d }}" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 20px;border-bottom:1px solid #C3CAD8;transition:background .5s cubic-bezier(.19,1,.22,1),color .5s,padding .6s cubic-bezier(.19,1,.22,1)" style-hover="background:#0C1B3A;color:#FFFFFF;padding-left:48px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#1F5BD8">{{ c.n }}</span><span style="flex:1;font-family:'Archivo',sans-serif;font-stretch:112%;font-weight:600;font-size:clamp(30px,4.2vw,68px);letter-spacing:-.04em;line-height:1">{{ c.name }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:20px">↗</span></div></sc-for>
 </div>
+<div style="margin:120px -40px 0">
+<div data-g2="" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;padding:0 40px;margin-bottom:36px">
+<h3 data-r="rise" style="font-family:'Archivo',sans-serif;font-stretch:112%;font-weight:600;font-size:clamp(32px,3.6vw,60px);line-height:1;letter-spacing:-.035em;margin:0">En planta, con tu equipo</h3>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#4A5878">Sesiones reales · Coats · Artecola · HPP</div>
+</div>
+<div data-reel-wrap="" style="overflow:hidden">
+<div data-reel="" style="display:flex;width:max-content;will-change:transform">
+<sc-for list="{{ reel }}" as="r" hint-placeholder-count="8"><figure style="margin:0 16px 0 0;flex:none;width:clamp(300px,34vw,560px)"><div style="position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:6px;background:#0C1B3A"><img src="{{ r.src }}" alt="{{ r.cap }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.19,1,.22,1)" style-hover="transform:scale(1.06)"></div><figcaption style="display:flex;justify-content:space-between;gap:16px;margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#4A5878"><span>{{ r.cap }}</span><span>{{ r.n }}</span></figcaption></figure></sc-for>
+</div>
+</div>
+</div>
 </section>
 
 <section id="calendario" style="padding:160px 40px;background:#FFFFFF">
@@ -419,7 +430,8 @@ class Component extends DCLogic {
     lay(); this.on(window, 'resize', lay); setTimeout(lay, 800);
 
     const words = $$('[data-w]'), para = $('[data-words]'), prog = $('[data-prog]'), frame = $('[data-hero-frame]'), hc = $('[data-hero-content]');
-    const mq = $('[data-mq]'), pars = $$('[data-par]'), hzImgs = $$('[data-hzimg]'), hzc = $('[data-hz-count]'), hzb = $('[data-hz-bar]');
+    const mq = $('[data-mq]'), reelEl = $('[data-reel]'), reelWrap = $('[data-reel-wrap]'), pars = $$('[data-par]'), hzImgs = $$('[data-hzimg]'), hzc = $('[data-hz-count]'), hzb = $('[data-hz-bar]');
+    if (reelWrap) { this.on(reelWrap, 'mouseenter', () => { this.rh = true; }); this.on(reelWrap, 'mouseleave', () => { this.rh = false; }); }
     const cta = $('[data-cta]'), ctaImg = $('[data-cta-img]'), wa = $('[data-wa]');
     const np = panels.length; let lit = -1, lastCount = '';
     this.cur = scrollY; this.last = scrollY; this.mx = 0; this.sk = 0;
@@ -432,6 +444,7 @@ class Component extends DCLogic {
       const p = cl(this.cur / H, 0, 1);
       frame.style.clipPath = `inset(${p * 7}% ${p * 4}% ${p * 7}% ${p * 4}% round ${p * 32}px)`;
       hc.style.transform = `translateY(${-p * 160}px)`; hc.style.opacity = String(1 - p * 1.3);
+      if (reelEl && !RM) { if (!this.rh) { const w = reelEl.scrollWidth / 2; this.rx = (this.rx || 0) - (.5 + Math.min(Math.abs(vel) * .3, 10)); if (this.rx <= -w) this.rx += w; reelEl.style.transform = `translate3d(${this.rx}px,0,0)`; } }
       if (mq && !RM) { const w = mq.scrollWidth / 2; this.mx -= .7 + Math.min(Math.abs(vel) * .45, 16); if (this.mx <= -w) this.mx += w; this.sk += (cl(vel * .35, -10, 10) - this.sk) * .1; mq.style.transform = `translate3d(${this.mx}px,0,0) skewX(${-this.sk}deg)`; }
       if (para) { const r = para.getBoundingClientRect(), top = r.top + d; const pr = cl((H * .82 - top) / (r.height + H * .3), 0, 1); const n = Math.round(pr * words.length); if (n !== lit) { lit = n; words.forEach((w, i) => { w.style.color = i < n ? '#070F22' : '#C3CAD8'; }); } }
       pars.forEach(el => { const r = el.parentElement.getBoundingClientRect(); const c = (r.top + d + r.height / 2 - H / 2) / H; el.style.transform = `translate3d(0,${c * -(+el.dataset.par) * 100}%,0)`; });
@@ -536,6 +549,7 @@ class Component extends DCLogic {
       ].map(a => ({ ...a, hasImg: !!a.img, noImg: !a.img })),
       clients: ['Brose', 'Coats', 'Ideal automotive', 'Nicro Bolta', 'Novares', 'Pelzer de México', 'La Morena'].map((name, i) => ({ name, n: String(i + 1).padStart(2, '0'), d: i * 70 })),
       cursos,
+      reel: [].concat(...[1, 2].map(() => [['assets/campo-1.jpg', 'Plan de control · Coats'], ['assets/campo-2.jpg', 'Recorrido en planta · Artecola'], ['assets/campo-3.jpg', 'Taller práctico en sitio'], ['assets/campo-4.jpg', 'Formación · HPP Systems']])).map(([src, cap], i) => ({ src, cap, n: String(i % 4 + 1).padStart(2, '0') + ' / 04' })),
       modules: [
         { k: 'A', t: 'Organigramas Inteligentes', d2: 'Diseña y versiona la estructura de tu planta con perfiles de puesto, competencias requeridas y span-of-control visual.' },
         { k: 'B', t: 'DNC: Detección de Necesidades de Capacitación', d2: 'Cruza competencias del puesto contra el nivel real del colaborador y genera el plan de formación y certificación.' },

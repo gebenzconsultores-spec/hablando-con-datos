@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Accesos · La Morena · Hablando con Datos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>*{box-sizing:border-box}body{margin:0;font-family:'IBM Plex Sans',sans-serif;color:#070F22;background:#FFFFFF}a{color:#1747B0;text-decoration:none}a:hover{color:#D2321A}.mono{font-family:'IBM Plex Mono',monospace}.disp{font-family:'Archivo',sans-serif;font-stretch:115%}</style>
+</head><body>
+<main style="max-width:1280px;margin:0 auto;padding:28px 24px 64px">
+<header style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid #D3D9E4;margin-bottom:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#fff;padding:4px;box-shadow:0 0 0 1px #D3D9E4;flex:none;display:grid;place-items:center"><img src="../assets/logo-hcd.png" alt="Hablando con Datos" style="width:100%;height:100%;object-fit:contain;border-radius:50%"></div>
+<div style="flex:1;min-width:220px"><div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#1747B0;margin-bottom:6px">Credenciales de acceso</div>
+<h1 class="disp" style="margin:0;font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1;letter-spacing:-.03em">La Morena</h1></div>
+<div class="mono" id="count" style="font-size:12px;letter-spacing:.08em;color:#4A5878"></div>
+</header>
+<p style="font-size:16px;line-height:1.6;color:#4A5878;margin:0 0 20px;max-width:760px">Busca tu nombre o ID de alumno. Escanea el código QR con la cámara de tu celular: se abrirá WhatsApp con tu ID y tu contraseña. Envía el mensaje para confirmar tu acceso.</p>
+<input id="q" type="search" placeholder="Buscar por nombre o ID de alumno…" autocomplete="off" style="width:100%;padding:16px 20px;font:inherit;font-size:16px;border:1px solid #C5CEDD;border-radius:12px;background:#F5F7FB;color:#070F22;outline:none;margin-bottom:24px">
+<div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px"></div>
+<p id="empty" style="display:none;text-align:center;color:#4A5878;padding:40px 0">Sin resultados.</p>
+<div class="mono" style="text-align:center;color:#7A879F;font-size:11px;letter-spacing:.12em;margin-top:48px">HABLANDO CON DATOS · SISTEMA DE CREDENCIALES</div>
+</main>
+<script>
+var WA='522223549353';
+var ACC=[{"id":"ALU-0111","n":"Carolina Huerta Cervantes","p":"HCD-5481"},{"id":"ALU-0110","n":"Raúl Armando Ramírez González","p":"HCD-5296"},{"id":"ALU-0109","n":"Luz Claridad Báez Hernández","p":"HCD-2669"},{"id":"ALU-0108","n":"Agustina Hernández Altamirano","p":"HCD-1246"},{"id":"ALU-0107","n":"Sonia Guzmán Ortega","p":"HCD-2213"},{"id":"ALU-0106","n":"Imelda Luna Montes","p":"HCD-9897"},{"id":"ALU-0105","n":"María Silvia Palafox González","p":"HCD-1052"},{"id":"ALU-0104","n":"Bernardino Sánchez Hernández","p":"HCD-4060"},{"id":"ALU-0103","n":"Francisco Javier Hernández León","p":"HCD-5226"},{"id":"ALU-0102","n":"Cruz Rodríguez Rojas","p":"HCD-4781"},{"id":"ALU-0101","n":"Jesús Gallardo Vázquez","p":"HCD-6017"},{"id":"ALU-0100","n":"Miguel Hernández De La Rosa","p":"HCD-1977"},{"id":"ALU-0099","n":"Javier Contreras","p":"HCD-7792"},{"id":"ALU-0098","n":"David Mariano Montiel Sánchez","p":"HCD-3980"},{"id":"ALU-0097","n":"Diego González López","p":"HCD-4916"},{"id":"ALU-0096","n":"Ricardo Ramírez Hernández","p":"HCD-5220"},{"id":"ALU-0095","n":"Minerva Picazo Hernández","p":"HCD-1458"},{"id":"ALU-0094","n":"Concepción Palafox Bonilla","p":"HCD-8527"},{"id":"ALU-0093","n":"Adriana Vázquez","p":"HCD-4706"},{"id":"ALU-0092","n":"Lidia Ramírez Contreras","p":"HCD-8956"},{"id":"ALU-0091","n":"Luis Alberto Paqui Martínez","p":"HCD-2920"},{"id":"ALU-0090","n":"José Andrés Escalante","p":"HCD-4471"},{"id":"ALU-0089","n":"Miguel Gutiérrez Reyes","p":"HCD-4213"},{"id":"ALU-0088","n":"Eduardo Vázquez Vázquez","p":"HCD-2614"},{"id":"ALU-0087","n":"Ivonne Pérez Téllez","p":"HCD-5332"},{"id":"ALU-0086","n":"Christian Hernández Rangel","p":"HCD-9088"},{"id":"ALU-0085","n":"Olivia Hernández Flores","p":"HCD-9651"},{"id":"ALU-0084","n":"María Elena Palafox Gonzagui","p":"HCD-4665"},{"id":"ALU-0083","n":"Óscar Reyes Flores","p":"HCD-5414"},{"id":"ALU-0082","n":"Blanca Dania Palafox","p":"HCD-9649"},{"id":"ALU-0081","n":"María del Carmen Sánchez","p":"HCD-1088"},{"id":"ALU-0080","n":"Mayra Erika Aniceto Rojo","p":"HCD-1220"},{"id":"ALU-0079","n":"Francisco Javier Lara Morales","p":"HCD-5856"}];
+function msg(a){return 'https://wa.me/'+WA+'?text='+encodeURIComponent('Hola, soy '+a.n+' (La Morena). ID de alumno: '+a.id+' · Contraseña: '+a.p);}
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+var grid=document.getElementById('grid');
+grid.innerHTML=ACC.map(function(a,i){return '<div class="card" data-s="'+norm(a.n+' '+a.id)+'" style="border:1px solid #D3D9E4;border-radius:16px;padding:22px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;background:#FFFFFF">'+
+'<div class="disp" style="font-weight:600;font-size:17px;line-height:1.25;min-height:44px;display:flex;align-items:center">'+a.n+'</div>'+
+'<div class="mono" style="font-size:12px;letter-spacing:.08em;color:#4A5878">ID <span style="color:#1747B0;background:#EEF2FA;padding:4px 10px;border-radius:6px;font-size:13px">'+a.id+'</span></div>'+
+'<div id="qr'+i+'" style="padding:8px;background:#fff;line-height:0"></div>'+
+'<a href="'+msg(a)+'" target="_blank" rel="noopener" style="width:100%;background:#D2321A;color:#fff;font-weight:600;font-size:14px;padding:12px;border-radius:999px">Enviar por WhatsApp</a></div>';}).join('');
+ACC.forEach(function(a,i){new QRCode(document.getElementById('qr'+i),{text:msg(a),width:150,height:150,colorDark:'#070F22',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});});
+var cards=grid.querySelectorAll('.card'),cnt=document.getElementById('count');
+function f(){var q=norm(document.getElementById('q').value.trim()),n=0;cards.forEach(function(c){var ok=c.getAttribute('data-s').indexOf(q)>-1;c.style.display=ok?'flex':'none';if(ok)n++;});cnt.textContent=n+' DE '+ACC.length+' ALUMNOS';document.getElementById('empty').style.display=n?'none':'block';}
+document.getElementById('q').addEventListener('input',f);f();
+</script>
+</body></html>

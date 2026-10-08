@@ -16,6 +16,25 @@ body{margin:0;background:#070F22;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}a:hover{color:inherit}
 ::selection{background:#D2321A;color:#fff}
 input::placeholder{color:rgba(255,255,255,.4)}
+/* ── Ajustes para celular (menos de 900px) ── */
+@media (max-width:899px){
+[data-root] header{mix-blend-mode:normal!important;background:rgba(7,15,34,.94)!important;padding:12px 20px!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+[data-root] header > a:first-child{font-size:17px!important;font-stretch:100%!important;letter-spacing:-.01em!important;word-spacing:.12em;line-height:1.1!important;padding-left:54px!important}
+[data-mlogo]{left:20px!important;top:10px!important;width:44px!important;height:44px!important}
+[data-mstatic]{position:static!important}
+#metodo,#clientes,#calendario,#diagnostico,#software{padding:88px 20px!important}
+[data-hero-content]{padding:0 20px 32px!important}
+[data-mpad]{padding:0 20px 48px!important}
+[data-root] h1{font-size:clamp(34px,10.5vw,52px)!important;line-height:1.05!important;letter-spacing:-.02em!important;font-stretch:100%!important;overflow-wrap:break-word}
+[data-root] h2{font-size:clamp(30px,8.8vw,44px)!important;line-height:1.08!important;letter-spacing:-.02em!important;font-stretch:100%!important;overflow-wrap:break-word}
+[data-root] h3{line-height:1.15!important;letter-spacing:-.01em!important}
+[data-root] p{text-align:left!important;-webkit-hyphens:manual!important;hyphens:manual!important}
+[data-mcard]{padding:22px 16px!important}
+[data-mqh]{flex-wrap:wrap!important;gap:4px 12px!important;font-size:11px!important;letter-spacing:.08em!important}
+[data-mqt]{font-size:21px!important;line-height:1.25!important;letter-spacing:-.01em!important;font-stretch:100%!important}
+[data-mcard] button{grid-template-columns:22px minmax(0,1fr)!important;gap:10px!important;padding:14px!important;font-size:15px!important}
+[data-mcard] button:hover{transform:none!important}
+}
 </style>
 </helmet>
 <div ref="{{ rootRef }}" data-root="" style="background:#F2F3F5;color:#070F22;font-family:'IBM Plex Sans',system-ui,sans-serif;overflow-x:clip;position:relative">
@@ -41,7 +60,7 @@ input::placeholder{color:rgba(255,255,255,.4)}
 </div>
 </header>
 
-<a href="#inicio" aria-label="HCD inicio" style="position:fixed;top:12px;left:40px;z-index:101;width:48px;height:48px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.18)"><img src="assets/logo-hcd.png" alt="Logotipo HCD" style="width:120%;height:120%;object-fit:contain"></a>
+<a data-mlogo="" href="#inicio" aria-label="HCD inicio" style="position:fixed;top:12px;left:40px;z-index:101;width:48px;height:48px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.18)"><img src="assets/logo-hcd.png" alt="Logotipo HCD" style="width:120%;height:120%;object-fit:contain"></a>
 
 <div data-menu="" style="position:fixed;inset:0;z-index:150;background:#0C1B3A;color:#FFFFFF;clip-path:circle(0% at calc(100% - 64px) 46px);pointer-events:none;display:flex;flex-direction:column;padding:22px 40px 40px">
 <div style="display:flex;justify-content:space-between;align-items:center">
@@ -111,7 +130,7 @@ input::placeholder{color:rgba(255,255,255,.4)}
 </div>
 <a href="{{ waConsultor }}" target="_blank" rel="noopener" data-mag="" style="display:inline-flex;align-items:center;gap:14px;background:#070F22;color:#FFFFFF;padding:20px 30px;border-radius:999px;font-weight:600;font-size:16px" style-hover="background:#1F5BD8">Hablar con un consultor <span style="font-family:'IBM Plex Mono',monospace">→</span></a>
 </div>
-<div style="position:sticky;top:110px">
+<div data-mstatic="" style="position:sticky;top:110px">
 <div data-r="mask" data-cl="Tu proceso" style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:6px;background:#0C1B3A">
 <div data-par="0.12" style="position:absolute;left:0;right:0;top:-10%;height:120%"><img src="assets/5hcd.jpg" alt="Automóvil desarmado pieza por pieza" style="width:100%;height:100%;object-fit:cover;display:block"></div>
 </div>
@@ -196,7 +215,7 @@ input::placeholder{color:rgba(255,255,255,.4)}
 
 <section id="diagnostico" style="padding:160px 40px;background:#0C1B3A;color:#FFFFFF">
 <div data-g2="" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:80px;align-items:start">
-<div style="position:sticky;top:110px">
+<div data-mstatic="" style="position:sticky;top:110px">
 <div data-r="up" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7FA6FF;margin-bottom:22px">05 — Diagnóstico pre-auditoría</div>
 <h2 data-r="rise" style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:600;font-size:clamp(40px,4.8vw,84px);line-height:.95;letter-spacing:-.045em;margin:0 0 28px">¿Qué tan lista está tu empresa para una auditoría?</h2>
 <p data-r="up" style="text-align:justify;hyphens:auto;font-size:17px;line-height:1.65;color:#C9D3E6;margin:0 0 36px">Once preguntas sobre auditoría interna, personal capacitado, no conformidades, gestión de casos y evidencia documental. Al terminar verás tu índice de preparación, el riesgo de no conformidades mayores y menores, y qué corregir antes de la auditoría o con qué capacitación atender lo que ya ocurrió. El resultado se libera cuando nos compartes los datos de contacto de tu empresa.</p>
@@ -206,12 +225,12 @@ input::placeholder{color:rgba(255,255,255,.4)}
 </div>
 </div>
 
-<div style="border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:40px;background:rgba(255,255,255,.03)">
+<div data-mcard="" style="border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:40px;background:rgba(255,255,255,.03)">
 <sc-if value="{{ isQuiz }}" hint-placeholder-val="{{ true }}">
-<div style="display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#C9D3E6;margin-bottom:14px"><span>Pregunta {{ qNum }} de {{ qTotal }}</span><span style="color:#7FA6FF">{{ q.tag }}</span></div>
+<div data-mqh="" style="display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#C9D3E6;margin-bottom:14px"><span>Pregunta {{ qNum }} de {{ qTotal }}</span><span style="color:#7FA6FF">{{ q.tag }}</span></div>
 <div style="height:3px;background:rgba(255,255,255,.12);border-radius:3px;margin-bottom:36px"><div style="height:100%;width:{{ qPct }};background:#D2321A;border-radius:3px;transition:width .8s cubic-bezier(.19,1,.22,1)"></div></div>
 <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#FF8B75;margin-bottom:12px">{{ q.cat }}</div>
-<div style="font-family:'Archivo',sans-serif;font-stretch:108%;font-weight:600;font-size:clamp(24px,2.2vw,34px);line-height:1.15;letter-spacing:-.025em;margin-bottom:30px">{{ q.title }}</div>
+<div data-mqt="" style="font-family:'Archivo',sans-serif;font-stretch:108%;font-weight:600;font-size:clamp(24px,2.2vw,34px);line-height:1.15;letter-spacing:-.025em;margin-bottom:30px">{{ q.title }}</div>
 <div style="display:flex;flex-direction:column;gap:10px">
 <sc-for list="{{ qOpts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.pick }}" style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;text-align:left;background:{{ o.bg }};border:1px solid {{ o.bc }};color:#FFFFFF;border-radius:6px;padding:18px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.45;cursor:pointer;transition:background .3s,border-color .3s,transform .4s cubic-bezier(.19,1,.22,1)" style-hover="border-color:#FFFFFF;transform:translateX(6px)"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#7FA6FF;padding-top:2px">{{ o.k }}</span><span>{{ o.t }}</span></button></sc-for>
 </div>
@@ -279,7 +298,7 @@ input::placeholder{color:rgba(255,255,255,.4)}
 <section id="contacto" data-cta="" style="position:relative;min-height:100vh;overflow:hidden;background:#070F22;color:#FFFFFF;display:flex;align-items:flex-end">
 <img data-cta-img="" src="assets/3hcd.jpg" alt="Vehículo en taller con iluminación tenue" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.3)">
 <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,15,34,.2) 0%,rgba(7,15,34,.5) 50%,rgba(7,15,34,.95) 100%)"></div>
-<div style="position:relative;width:100%;padding:0 40px 64px;box-sizing:border-box">
+<div data-mpad="" style="position:relative;width:100%;padding:0 40px 64px;box-sizing:border-box">
 <div data-r="up" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7FA6FF;margin-bottom:22px">07 — Contacto</div>
 <h2 data-r="rise" style="font-family:'Archivo',sans-serif;font-stretch:118%;font-weight:600;font-size:clamp(48px,8vw,140px);line-height:.92;letter-spacing:-.05em;margin:0 0 40px;max-width:1400px">Hablemos de la variabilidad de tus procesos.</h2>
 <div data-g2="" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;border-top:1px solid rgba(255,255,255,.25);padding-top:32px">

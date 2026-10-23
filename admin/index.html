@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<title>Panel de cursos · Hablando con Datos</title>
+<link rel="icon" href="/assets/logo-hcd.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+<main id="login" class="login" hidden>
+  <form id="form-login" class="tarjeta login__caja">
+    <img class="login__logo" src="/assets/logo-hcd.png" alt="" width="64" height="64">
+    <h1>Panel de cursos</h1>
+    <p class="suave">Solo para quien administra el sitio de Hablando con Datos.</p>
+    <p id="login-config" class="aviso aviso--error" hidden></p>
+    <label for="clave">Contraseña</label>
+    <input id="clave" name="clave" type="password" autocomplete="current-password" required>
+    <p id="login-error" class="error" role="alert" hidden></p>
+    <button id="btn-entrar" class="btn btn--primario" type="submit">Entrar</button>
+  </form>
+</main>
+
+<div id="panel" hidden>
+  <header class="barra">
+    <div class="barra__marca">
+      <img src="/assets/logo-hcd.png" alt="" width="40" height="40">
+      <strong>Panel de cursos</strong>
+    </div>
+    <p id="estado" class="barra__estado" role="status"></p>
+    <div class="barra__acciones">
+      <button id="btn-publicar" class="btn btn--publicar" type="button" disabled>Publicar cambios</button>
+      <button id="btn-salir" class="btn btn--texto" type="button">Salir</button>
+    </div>
+  </header>
+
+  <div class="pestanas" role="tablist" aria-label="Secciones del panel">
+    <button id="pestana-calendario" class="pestana" role="tab" type="button" aria-controls="vista-calendario" aria-selected="true">Calendario</button>
+    <button id="pestana-difusion" class="pestana" role="tab" type="button" aria-controls="vista-difusion" aria-selected="false" tabindex="-1">Difusión</button>
+  </div>
+
+  <main class="contenido">
+    <section id="vista-calendario" role="tabpanel" aria-labelledby="pestana-calendario">
+      <p id="bloqueo" class="aviso aviso--error" role="alert" hidden></p>
+      <p id="aviso-semilla" class="aviso" hidden>Todavía no has publicado desde el panel. Abajo están los cursos que hoy muestra el sitio. Revísalos y pulsa <strong>Publicar cambios</strong> para que a partir de ahora el panel controle el calendario.</p>
+
+      <div class="herramientas">
+        <h2>Cursos</h2>
+        <button id="btn-nuevo" class="btn btn--primario" type="button">Agregar curso</button>
+        <label class="check"><input id="ver-pasados" type="checkbox"> Mostrar cursos pasados</label>
+      </div>
+
+      <ul id="lista" class="lista"></ul>
+      <p id="lista-vacia" class="vacio" hidden>No hay cursos próximos. Pulsa <strong>Agregar curso</strong> y el calendario del sitio se llenará solo.</p>
+    </section>
+
+    <section id="vista-difusion" role="tabpanel" aria-labelledby="pestana-difusion" hidden>
+      <p id="dif-vacio" class="vacio" hidden>Para crear una imagen necesitas al menos un curso con fecha próxima. Agrégalo en la pestaña Calendario.</p>
+      <div id="dif" class="difusion">
+        <form id="controles" class="tarjeta controles">
+          <fieldset>
+            <legend>¿Qué vas a publicar?</legend>
+            <label class="opcion"><input type="radio" name="tipo" value="curso" checked> Un curso</label>
+            <label class="opcion"><input type="radio" name="tipo" value="agenda"> Agenda de próximos cursos</label>
+          </fieldset>
+
+          <div id="campo-curso" class="campo">
+            <label for="dif-curso">Curso</label>
+            <select id="dif-curso"></select>
+          </div>
+          <div id="campo-n" class="campo" hidden>
+            <label for="dif-n">Cuántos cursos mostrar</label>
+            <select id="dif-n">
+              <option>3</option><option>4</option><option selected>5</option><option>6</option>
+            </select>
+          </div>
+
+          <fieldset>
+            <legend>Formato</legend>
+            <div id="formatos"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Fondo</legend>
+            <label class="opcion"><input type="radio" name="tema" value="oscuro" checked> Oscuro</label>
+            <label class="opcion"><input type="radio" name="tema" value="claro"> Claro</label>
+          </fieldset>
+        </form>
+
+        <div class="derecha">
+          <div class="escenario">
+            <canvas id="lienzo" width="1080" height="1080" role="img" aria-label="Vista previa de la imagen para publicar"></canvas>
+          </div>
+          <div class="previa__acciones">
+            <button id="btn-descargar" class="btn btn--primario" type="button">Descargar imagen</button>
+            <button id="btn-compartir" class="btn" type="button" hidden>Compartir</button>
+            <span id="medida" class="suave"></span>
+          </div>
+
+          <div class="tarjeta textos">
+            <div class="textos__cabecera">
+              <div class="segmentos" role="radiogroup" aria-label="Texto para">
+                <label class="segmento"><input type="radio" name="destino" value="redes" checked><span>Para redes</span></label>
+                <label class="segmento"><input type="radio" name="destino" value="whatsapp"><span>Para WhatsApp</span></label>
+              </div>
+              <button id="btn-copiar" class="btn" type="button">Copiar texto</button>
+            </div>
+            <label class="oculto-visual" for="texto-pub">Texto de la publicación</label>
+            <textarea id="texto-pub" rows="11" spellcheck="true"></textarea>
+            <p id="ayuda-texto" class="suave"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog id="dlg-curso" aria-labelledby="dlg-titulo">
+  <form id="form-curso" method="dialog">
+    <h2 id="dlg-titulo">Agregar curso</h2>
+    <div class="campo">
+      <label for="f-titulo">Nombre del curso</label>
+      <input id="f-titulo" name="titulo" type="text" maxlength="120" required list="sugerencias" autocomplete="off">
+      <datalist id="sugerencias"></datalist>
+    </div>
+    <div class="campo">
+      <label for="f-categoria">Categoría</label>
+      <select id="f-categoria" name="categoria" required></select>
+    </div>
+    <div class="fila2">
+      <div class="campo">
+        <label for="f-inicio">Fecha de inicio</label>
+        <input id="f-inicio" name="inicio" type="date" required>
+      </div>
+      <div class="campo">
+        <label for="f-fin">Fecha de fin <span class="suave">(si dura más de un día)</span></label>
+        <input id="f-fin" name="fin" type="date">
+      </div>
+    </div>
+    <div class="campo">
+      <label for="f-horario">Horario <span class="suave">(opcional)</span></label>
+      <input id="f-horario" name="horario" type="text" maxlength="40" placeholder="9:00 a 13:00 h">
+    </div>
+    <div class="fila2">
+      <div class="campo">
+        <label for="f-modalidad">Modalidad</label>
+        <select id="f-modalidad" name="modalidad"></select>
+      </div>
+      <div class="campo">
+        <label for="f-cupo">Cupo</label>
+        <select id="f-cupo" name="cupo"></select>
+      </div>
+    </div>
+    <div class="campo">
+      <label for="f-imagen">Foto al pasar el mouse en el calendario</label>
+      <select id="f-imagen" name="imagen"></select>
+    </div>
+    <label class="check"><input id="f-visible" name="visible" type="checkbox" checked> Mostrar en el sitio</label>
+    <p id="f-error" class="error" role="alert" hidden></p>
+    <div class="dialogo__acciones">
+      <button class="btn btn--texto" type="button" id="f-cancelar">Cancelar</button>
+      <button class="btn" type="submit" value="guardar">Guardar sin publicar</button>
+      <button class="btn btn--primario" type="submit" value="publicar">Guardar y publicar</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="avisos" class="avisos" role="status" aria-live="polite"></div>
+
+<script type="module" src="/admin/app.js"></script>
+</body>
+</html>

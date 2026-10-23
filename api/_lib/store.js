@@ -19,7 +19,7 @@ const carpetaLocal = () => process.env.HCD_STORE_DIR || null;
 
 function exigirAlmacen() {
   if (carpetaLocal()) return;
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN && !process.env.BLOB_STORE_ID) {
     throw new ErrorAlmacen('sin_almacen', 'Falta conectar una tienda de Vercel Blob a este proyecto.');
   }
 }

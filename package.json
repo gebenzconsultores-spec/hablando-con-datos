@@ -1,0 +1,13 @@
+{
+  "name": "hablando-con-datos",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio de Hablando con Datos: sitio estático más el panel privado de cursos (/admin) y su API.",
+  "scripts": {
+    "test": "node --test \"tests/*.test.mjs\""
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.8.2"
+  }
+}

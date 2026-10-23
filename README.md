@@ -21,6 +21,28 @@ vercel.json           Cabeceras y configuración de Vercel
 - **Módulo de software** con enlace directo a la plataforma: https://hcd-certificados.vercel.app/
 - **WhatsApp flotante** y SEO (meta tags, Open Graph, datos estructurados schema.org).
 
+## Panel de cursos (`/admin`)
+
+Página oculta (noindex, sin enlaces desde el sitio) para publicar cursos y generar material de difusión sin editar JSON.
+
+- **Calendario**: agrega, edita, duplica, oculta o elimina cursos y pulsa *Publicar cambios*. El sitio los muestra en segundos. Los cursos pasados se ocultan solos.
+- **Difusión**: genera imágenes 1080×1080, 1080×1350 y 1080×1920 (estados de WhatsApp e historias), de un curso o de la agenda, más el texto listo para redes y WhatsApp.
+
+Arquitectura: funciones de Vercel en `api/` + Vercel Blob (`hcd/cursos.json`, con respaldos fechados). `GET /api/cursos` es público; si no hay nada publicado o la API falla, el sitio usa `cursos.json` como respaldo.
+
+### Configuración en Vercel (una vez)
+
+1. Storage → crear un **Blob store** (recomendado *Private*) y conectarlo al proyecto (crea `BLOB_READ_WRITE_TOKEN`).
+2. Settings → Environment Variables: `ADMIN_PASSWORD` (Production y Preview). Opcional: `ADMIN_SECRET` para firmar la sesión.
+3. Redeploy y abrir `/admin`.
+
+### Pruebas
+
+```bash
+npm install
+npm test
+```
+
 ## Ejecutar localmente
 
 Al ser estático, basta un servidor de archivos:

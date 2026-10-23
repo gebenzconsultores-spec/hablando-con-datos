@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* Calendario: pide los cursos publicados desde el panel (/admin). Si aún no hay, usa /cursos.json. */
+window.__hcdCursos=(function(){var j=function(r){if(!r.ok)throw new Error(r.status);return r.json()};
+return fetch('/api/cursos',{headers:{Accept:'application/json'}}).then(j).then(function(d){if(d&&d.publicado&&Array.isArray(d.cursos))return d.cursos;throw new Error('sin publicar')})
+.catch(function(){return fetch('/cursos.json').then(j).then(function(d){return d.cursos})})
+.catch(function(){return null})})();
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -34,6 +41,10 @@ input::placeholder{color:rgba(255,255,255,.4)}
 [data-mqt]{font-size:21px!important;line-height:1.25!important;letter-spacing:-.01em!important;font-stretch:100%!important}
 [data-mcard] button{grid-template-columns:22px minmax(0,1fr)!important;gap:10px!important;padding:14px!important;font-size:15px!important}
 [data-mcard] button:hover{transform:none!important}
+[data-show-xs]{display:flex!important}
+[data-hide-xs]{display:none!important}
+[data-menu]{overflow-y:auto!important}
+[data-crow]{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
 }
 </style>
 </helmet>
@@ -68,14 +79,17 @@ input::placeholder{color:rgba(255,255,255,.4)}
 <button onClick="{{ closeMenu }}" style="background:#D2321A;border:none;color:#FFFFFF;border-radius:999px;padding:12px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer">Cerrar ✕</button>
 </div>
 <div data-g2="" style="flex:1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:48px;align-items:end">
+<div style="display:flex;flex-direction:column;gap:28px">
 <nav style="display:flex;flex-direction:column">
 <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="6"><a href="{{ l.href }}" style="display:flex;align-items:baseline;gap:20px;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.12);padding:6px 0" style-hover="color:#FF8B75"><span data-ml="" style="display:flex;align-items:baseline;gap:20px;transform:translateY(110%)"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#7FA6FF">{{ l.n }}</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:600;font-size:clamp(40px,6.2vw,96px);line-height:1.05;letter-spacing:-.04em">{{ l.t }}</span></span></a></sc-for>
 </nav>
+<a data-show-xs="" href="https://certificados.hablandocondatos.com/" target="_blank" rel="noopener" style="display:none;align-items:center;justify-content:space-between;gap:16px;box-sizing:border-box;padding:18px 20px;border:1.5px solid #7FA6FF;border-radius:14px;background:rgba(31,91,216,.22);color:#FFFFFF"><span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:20px;letter-spacing:-.01em;line-height:1.2">Plataforma de certificados</span><span aria-hidden="true" style="font-size:22px;line-height:1">↗</span></a>
+</div>
 <div style="display:flex;flex-direction:column;gap:22px;font-size:16px;color:#C9D3E6">
 <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7FA6FF">Contacto</div>
 <a href="{{ wa }}" target="_blank" rel="noopener" style="font-family:'Archivo',sans-serif;font-size:28px;font-weight:600;color:#FFFFFF;letter-spacing:-.02em">222 354 9353</a>
 <span>ventas@hablandocondatos.com.mx</span>
-<a href="https://certificados.hablandocondatos.com/" target="_blank" rel="noopener" style="color:#FFFFFF">Plataforma de certificados ↗</a>
+<a data-hide-xs="" href="https://certificados.hablandocondatos.com/" target="_blank" rel="noopener" style="color:#FFFFFF">Plataforma de certificados ↗</a>
 </div>
 </div>
 </div>
@@ -200,16 +214,22 @@ input::placeholder{color:rgba(255,255,255,.4)}
 </div>
 <p data-r="up" style="text-align:justify;hyphens:auto;font-size:18px;line-height:1.6;color:#4A5878;margin:0">Sesiones en vivo con cupo limitado. Reserva tu lugar y recibe confirmación por WhatsApp.</p>
 </div>
-<div style="border-top:1px solid #070F22">
+<div data-cal-list="" style="border-top:1px solid #070F22">
 <sc-for list="{{ cursos }}" as="c" hint-placeholder-count="8">
-<a href="{{ c.wa }}" target="_blank" rel="noopener" data-prev="{{ c.img }}" data-g2="" style="display:grid;grid-template-columns:170px minmax(0,1fr) 200px 150px 56px;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid #D3D9E4;transition:padding .6s cubic-bezier(.19,1,.22,1),background .4s" style-hover="padding-left:24px;padding-right:24px;background:#F2F3F5">
-<div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:600;font-size:52px;letter-spacing:-.05em;line-height:1;white-space:nowrap">{{ c.d }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4A5878">{{ c.m }}</span></div>
-<div><div style="font-family:'Archivo',sans-serif;font-stretch:108%;font-weight:600;font-size:clamp(20px,1.8vw,28px);letter-spacing:-.02em;line-height:1.15">{{ c.titulo }}</div><sc-if value="{{ c.promo }}" hint-placeholder-val="{{ false }}"><div style="display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:#D2321A;color:#FFFFFF;padding:6px 10px;border-radius:999px">Promoción por cercanía</div></sc-if></div>
+<a href="{{ c.wa }}" target="_blank" rel="noopener" data-prev="{{ c.img }}" data-crow="" style="display:grid;grid-template-columns:170px minmax(0,1fr) 200px 150px 56px;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid #D3D9E4;transition:padding .6s cubic-bezier(.19,1,.22,1),background .4s" style-hover="padding-left:24px;padding-right:24px;background:#F2F3F5">
+<div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:600;font-size:{{ c.dSize }};letter-spacing:-.05em;line-height:1;white-space:nowrap">{{ c.d }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4A5878">{{ c.m }}</span></div>
+<div><div style="font-family:'Archivo',sans-serif;font-stretch:108%;font-weight:600;font-size:clamp(20px,1.8vw,28px);letter-spacing:-.02em;line-height:1.15">{{ c.titulo }}</div><sc-if value="{{ c.hasHorario }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;font-size:14px;color:#4A5878">{{ c.horario }}</div></sc-if></div>
 <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#1F5BD8">{{ c.categoria }}</span>
-<span style="font-size:15px;color:#4A5878;line-height:1.4">Online en vivo<br>{{ c.lug }}</span>
+<span style="font-size:15px;color:#4A5878;line-height:1.4">{{ c.modalidad }}<br>{{ c.lug }}</span>
 <span style="justify-self:end;width:52px;height:52px;border-radius:50%;background:#070F22;color:#FFFFFF;display:grid;place-items:center;font-size:18px">→</span>
 </a>
 </sc-for>
+<sc-if value="{{ sinCursos }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;padding:48px 0;border-bottom:1px solid #D3D9E4">
+<p style="margin:0;max-width:44ch;font-size:18px;line-height:1.5;color:#4A5878">Estamos programando las próximas fechas. Escríbenos y te avisamos primero.</p>
+<a href="{{ waAvisar }}" target="_blank" rel="noopener" style="display:inline-block;background:#070F22;color:#FFFFFF;padding:16px 26px;border-radius:999px;font-weight:600;font-size:15px">Avisarme por WhatsApp</a>
+</div>
+</sc-if>
 </div>
 </section>
 
@@ -334,7 +354,7 @@ input::placeholder{color:rgba(255,255,255,.4)}
 <script type="text/x-dc" data-dc-script data-props="{&quot;preloader&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animación&quot;},&quot;customCursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animación&quot;},&quot;heroMedia&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;imagen&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;'video' | 'imagen'&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
 class Component extends DCLogic {
   rootRef = React.createRef();
-  state = { qi: 0, ans: [], stage: 'quiz', f: { e: '', t: '', m: '' }, err: '', ringOn: false, picking: null };
+  state = { qi: 0, ans: [], stage: 'quiz', f: { e: '', t: '', m: '' }, err: '', ringOn: false, picking: null, cursosLista: null };
   QS = [
     { cat: 'Situación actual', tag: 'Contexto', title: '¿En qué situación está tu empresa respecto a auditorías?', opts: [{ t: 'Tenemos auditoría de certificación o del cliente en menos de 3 meses.' }, { t: 'Tenemos auditoría programada dentro de 3 a 12 meses.' }, { t: 'Ya tuvimos auditoría y quedaron no conformidades por atender.' }, { t: 'No hay fecha definida; queremos saber cómo estamos.' }] },
     { cat: 'Preparación para auditoría', tag: 'ISO 9001 / IATF 16949 · 9.2', title: '¿Cuándo fue tu última auditoría interna completa de sistema, proceso y producto?', opts: [{ t: 'No hemos hecho auditoría interna en los últimos 12 meses.', s: 25, f: 'M', a: 'Sin auditoría interna en 12 meses (cláusula 9.2): el auditor externo suele levantarla como no conformidad mayor por ausencia del proceso.' }, { t: 'Se hizo, pero solo de sistema y sin cubrir todos los procesos ni turnos.', s: 50, f: 'm', a: 'Programa de auditoría interna incompleto (9.2.2): riesgo de no conformidad menor.' }, { t: 'Programa anual completo de sistema, proceso y producto.', s: 75 }, { t: 'Programa basado en riesgo, con hallazgos cerrados antes de la auditoría externa.', s: 100 }] },
@@ -350,6 +370,7 @@ class Component extends DCLogic {
   ];
 
   componentDidMount() {
+    Promise.resolve(window.__hcdCursos).then(l => this.setState({ cursosLista: Array.isArray(l) ? l : [] }));
     this._t = setTimeout(() => this.init(), 30);
     this._v = setTimeout(() => document.querySelectorAll('video').forEach(v => { v.muted = true; v.defaultMuted = true; v.setAttribute('muted', ''); const p = v.play(); if (p) p.catch(() => {}); }), 60);
   }
@@ -423,10 +444,11 @@ class Component extends DCLogic {
     $$('[data-roll]').forEach(a => { const i = a.querySelector('[data-roll-in]'); this.on(a, 'mouseenter', () => { i.style.transform = 'translateY(-50%)'; }); this.on(a, 'mouseleave', () => { i.style.transform = ''; }); });
 
     const pv = $('[data-pv]'), pvIn = $('[data-pv-in]'), pvImg = $('[data-pv-img]');
-    $$('[data-prev]').forEach(r => {
-      this.on(r, 'mouseenter', () => { if (!fine) return; pvImg.src = r.dataset.prev; pvIn.style.opacity = '1'; pvIn.style.transform = 'scale(1)'; });
-      this.on(r, 'mouseleave', () => { pvIn.style.opacity = '0'; pvIn.style.transform = 'scale(.6)'; });
-    });
+    const calList = $('[data-cal-list]');
+    if (calList) {
+      this.on(calList, 'mouseover', e => { const r = e.target.closest('[data-prev]'); if (!r || !fine) return; pvImg.src = r.dataset.prev; pvIn.style.opacity = '1'; pvIn.style.transform = 'scale(1)'; });
+      this.on(calList, 'mouseout', e => { const r = e.target.closest('[data-prev]'); if (r && !r.contains(e.relatedTarget)) { pvIn.style.opacity = '0'; pvIn.style.transform = 'scale(.6)'; } });
+    }
 
     this.on(R, 'click', e => {
       const a = e.target.closest('a[href^="#"]'); if (!a) return;
@@ -502,6 +524,35 @@ class Component extends DCLogic {
     this.$$('[data-ml]').forEach((l, i) => { l.style.transition = `transform 1.1s cubic-bezier(.19,1,.22,1) ${open ? 320 + i * 60 : 0}ms`; l.style.transform = open ? 'translateY(0)' : 'translateY(110%)'; });
   }
 
+  // Calendario: convierte la lista publicada (panel o cursos.json) en filas listas para pintar.
+  // Oculta lo que ya pasó y lo marcado como no visible; el orden es siempre por fecha.
+  armarCursos(lista, waT) {
+    const MES = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+    const MESL = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    const IMG = { 'Core Tools': 'assets/4hcd.jpg', 'Lean Six Sigma': 'assets/ihcd.jpg', 'Sistemas de Gestión': 'assets/2hcd.jpg', 'Estadística y Software': 'assets/6hcd.jpg', 'Gestión de RH': 'assets/campo-4.jpg' };
+    const hoy = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Mexico_City' }).format(new Date());
+    const dd = n => String(n).padStart(2, '0');
+    return (lista || [])
+      .filter(c => c && /^\d{4}-\d{2}-\d{2}$/.test(c.inicio) && c.visible !== false && (c.fin || c.inicio) >= hoy)
+      .sort((a, b) => a.inicio.localeCompare(b.inicio))
+      .map(c => {
+        const [, m1, d1] = c.inicio.split('-').map(Number);
+        const rango = !!c.fin && c.fin > c.inicio;
+        const [, m2, d2] = rango ? c.fin.split('-').map(Number) : [0, m1, d1];
+        const cuando = !rango ? `${d1} de ${MESL[m1 - 1]}` : m2 === m1 ? `del ${d1} al ${d2} de ${MESL[m1 - 1]}` : `del ${d1} de ${MESL[m1 - 1]} al ${d2} de ${MESL[m2 - 1]}`;
+        const img = /^assets\/[\w.-]+$/.test(c.imagen || '') ? c.imagen : (IMG[c.categoria] || 'assets/4hcd.jpg');
+        return {
+          d: rango ? `${dd(d1)}–${dd(d2)}` : dd(d1),
+          m: rango && m2 !== m1 ? `${MES[m1 - 1]}–${MES[m2 - 1]}` : MES[m1 - 1],
+          dSize: rango ? '38px' : '52px',
+          titulo: c.titulo, categoria: c.categoria, img,
+          lug: c.cupo || 'Cupo limitado', modalidad: c.modalidad || 'Online en vivo',
+          horario: c.horario || '', hasHorario: !!c.horario,
+          wa: waT(`Hola, quiero reservar mi lugar en ${c.titulo} (${cuando}).`)
+        };
+      });
+  }
+
   calc() {
     const { ans } = this.state; let sum = 0, n = 0; const flags = [];
     this.QS.forEach((q, i) => { const o = ans[i] != null ? q.opts[ans[i]] : null; if (o && o.s != null) { sum += o.s; n++; } if (o && o.f) flags.push(o); });
@@ -535,19 +586,7 @@ class Component extends DCLogic {
     const q = this.QS[qi];
     const r = this.calc(), M = r.flags.filter(x => x.f === 'M').length;
     const lvl = r.score >= 85 ? ['Lista para auditoría', '#7FA6FF'] : r.score >= 65 ? ['Preparación parcial', '#FFFFFF'] : r.score >= 45 ? ['Riesgo moderado', '#FF8B75'] : ['Riesgo alto', '#FF5A3D'];
-    const MESL = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-    const MES = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-    const cursos = [
-      ['2026-10-14', '', 'Herramientas básicas de calidad', 'Core Tools', 'assets/4hcd.jpg'],
-      ['2026-10-15', '', "5S's", 'Lean Six Sigma', 'assets/7hcd.jpg'],
-      ['2026-10-21', '', 'Formación de auditores internos ISO 19011:2026', 'Sistemas de Gestión', 'assets/2hcd.jpg'],
-      ['2026-10-27', '', 'Actualización ISO 14001:2026', 'Sistemas de Gestión', 'assets/ihcd.jpg'],
-      ['2026-11-04', '', 'Introducción al GD&T', 'Core Tools', 'assets/5hcd.jpg'],
-      ['2026-11-11', '', 'TISAX', 'Sistemas de Gestión', 'assets/6hcd.jpg'],
-      ['2026-11-18', '', 'Plan de control', 'Core Tools', 'assets/4hcd.jpg'],
-      ['2026-11-25', '', 'Interpretación de ISO 9001:2026', 'Sistemas de Gestión', 'assets/2hcd.jpg'],
-      ['2026-11-30', '', 'Mapeo de Procesos', 'Lean Six Sigma', 'assets/ihcd.jpg']
-    ].map(([fe, fin, titulo, categoria, img], i) => ({ d: fe.slice(8) + (fin ? '–' + fin : ''), m: MES[+fe.slice(5, 7) - 1], titulo, categoria, img, lug: 'Cupo limitado', promo: i === 0, wa: waT(`Hola, quiero reservar mi lugar en ${titulo} (${fe.slice(8)}${fin ? ' y ' + fin : ''} de ${MESL[+fe.slice(5, 7) - 1]}).`) }));
+    const cursos = this.armarCursos(this.state.cursosLista, waT);
     const setF = k => e => { const v = e.target.value; this.setState(s => ({ f: { ...s.f, [k]: v }, err: '' })); };
     const hv = this.props.heroMedia !== 'imagen';
     return {
@@ -567,7 +606,7 @@ class Component extends DCLogic {
         { n: '04', l: 'Estadística, Software y RH', short: 'Datos', img: 'assets/6hcd.jpg', items: ['Estadística aplicada', 'Minitab', 'Organigramas inteligentes', 'DNC', 'Formación de instructores'] }
       ].map(a => ({ ...a, hasImg: !!a.img, noImg: !a.img })),
       clients: ['Brose', 'Coats', 'Ideal automotive', 'Nicro Bolta', 'Novares', 'Pelzer de México', 'La Morena'].map((name, i) => ({ name, n: String(i + 1).padStart(2, '0'), d: i * 70 })),
-      cursos,
+      cursos, sinCursos: this.state.cursosLista !== null && cursos.length === 0, waAvisar: waT('Hola, quiero que me avisen de las próximas fechas de cursos.'),
       reel: [].concat(...[1, 2].map(() => [['assets/campo-1.jpg', 'Plan de control · Coats'], ['assets/campo-2.jpg', 'Recorrido en planta · Artecola'], ['assets/campo-3.jpg', 'Taller práctico en sitio'], ['assets/campo-4.jpg', 'Formación · HPP Systems']])).map(([src, cap], i) => ({ src, cap, n: String(i % 4 + 1).padStart(2, '0') + ' / 04' })),
       modules: [
         { k: 'A', t: 'Organigramas Inteligentes', d2: 'Diseña y versiona la estructura de tu planta con perfiles de puesto, competencias requeridas y span-of-control visual.' },

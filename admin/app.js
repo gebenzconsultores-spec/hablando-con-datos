@@ -284,6 +284,11 @@ async function pintar() {
   await dibujar($('#lienzo'), { tipo: d.tipo, curso, cursos, formato: d.formato, tema: d.tema });
   if (turno !== pintando) return;
   $('#medida').textContent = `${FORMATOS[d.formato].medida} px · ${FORMATOS[d.formato].uso}`;
+  // Dejamos la imagen lista: compartir debe ocurrir dentro del clic, sin esperas.
+  S.dif.archivo = null;
+  $('#lienzo').toBlob((blob) => {
+    if (blob && turno === pintando) S.dif.archivo = new File([blob], nombreArchivo({ tipo: d.tipo, curso, formato: d.formato }), { type: 'image/png' });
+  }, 'image/png');
 }
 
 function textosBase() {
@@ -337,12 +342,15 @@ async function descargar() {
 }
 
 async function compartir() {
-  const blob = await new Promise((ok) => $('#lienzo').toBlob(ok, 'image/png'));
-  const archivo = new File([blob], nombreArchivo({ tipo: S.dif.tipo, curso: cursoElegido(), formato: S.dif.formato }), { type: 'image/png' });
+  const archivo = S.dif.archivo;
+  if (!archivo) return avisar('La imagen todavía se está preparando. Intenta de nuevo en un momento.', { tipo: 'error' });
   try {
-    await navigator.share({ files: [archivo], text: S.dif.textos[S.dif.destino] });
+    await navigator.share({ files: [archivo], title: 'Hablando con Datos' });
   } catch (e) {
-    if (e?.name !== 'AbortError') avisar('Tu navegador no pudo abrir el menú de compartir. Usa Descargar imagen.', { tipo: 'error' });
+    if (e?.name === 'AbortError') return;
+    // Plan B: bajamos la imagen para que la subas tú.
+    await descargar();
+    avisar('Tu navegador no permite compartir directo. Descargué la imagen; súbela desde tu galería o carpeta.', { tipo: 'error' });
   }
 }
 
@@ -465,7 +473,7 @@ $('#texto-pub').addEventListener('input', (e) => { S.dif.textos[S.dif.destino] =
 $('#btn-descargar').addEventListener('click', descargar);
 $('#btn-copiar').addEventListener('click', copiarTexto);
 $('#btn-compartir').addEventListener('click', compartir);
-if (navigator.canShare?.({ files: [new File([''], 'a.png', { type: 'image/png' })] })) $('#btn-compartir').hidden = false;
+if (navigator.canShare?.({ files: [new File([''], 'a.png', { type: 'image/png' })] }) && /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)) $('#btn-compartir').hidden = false;
 
 window.addEventListener('beforeunload', (e) => { if (S.cargado && hayCambios() && S.publicado) { e.preventDefault(); e.returnValue = ''; } });
 

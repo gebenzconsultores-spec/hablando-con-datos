@@ -88,12 +88,15 @@ function renderEstado() {
   const cambios = hayCambios();
   est.className = `barra__estado${cambios ? ' pendiente' : S.publicado ? ' ok' : ''}`;
   if (cambios) est.textContent = 'Tienes cambios sin publicar.';
+  else if (S.cargado && !S.publicado) est.textContent = 'Aún no has publicado desde el panel.';
   else if (S.actualizado) {
     const f = new Date(S.actualizado).toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'America/Mexico_City' });
     est.textContent = `Todo publicado. Última publicación: ${f}.`;
   } else est.textContent = '';
   const b = $('#btn-publicar');
-  b.disabled = !cambios || S.publicando;
+  // Mientras el panel no haya publicado nunca, el botón queda activo para poder publicar la lista base.
+  const primera = S.cargado && !S.publicado;
+  b.disabled = !(cambios || primera) || S.publicando;
   b.textContent = S.publicando ? 'Publicando…' : 'Publicar cambios';
   $('#aviso-semilla').hidden = S.publicado || !S.cargado;
 }

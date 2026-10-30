@@ -141,7 +141,7 @@
   "rewrites": [
     {
       "source": "/acceso/:slug",
-      "destination": "/acceso/index.html"
+      "destination": "/acceso"
     }
   ]
 }

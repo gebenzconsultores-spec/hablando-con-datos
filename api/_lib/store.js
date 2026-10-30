@@ -6,8 +6,6 @@ import { get, put } from '@vercel/blob';
 // Para desarrollo local y pruebas se puede usar una carpeta con HCD_STORE_DIR (nunca en producción:
 // el disco de Vercel se borra entre ejecuciones).
 
-const RUTA = 'hcd/cursos.json';
-
 export class ErrorAlmacen extends Error {
   constructor(codigo, mensaje) {
     super(mensaje);
@@ -43,23 +41,24 @@ async function conAcceso(operacion) {
   throw primerError;
 }
 
-export async function leerCursos() {
+async function leerDoc(archivo) {
   exigirAlmacen();
   const dir = carpetaLocal();
   if (dir) {
     try {
-      return JSON.parse(await readFile(join(dir, 'cursos.json'), 'utf8'));
+      return JSON.parse(await readFile(join(dir, `${archivo}.json`), 'utf8'));
     } catch (e) {
       if (e.code === 'ENOENT') return null;
       throw e;
     }
   }
+  const ruta = `hcd/${archivo}.json`;
   const modos = acceso ? [acceso] : ['private', 'public'];
   let ultimoError;
   let respondio = false; // algún intento terminó sin error (aunque el archivo no exista)
   for (const modo of modos) {
     try {
-      const r = await get(RUTA, { access: modo, useCache: false });
+      const r = await get(ruta, { access: modo, useCache: false });
       respondio = true;
       if (r?.stream) {
         acceso = modo;
@@ -73,20 +72,25 @@ export async function leerCursos() {
   return null; // todavía no se ha publicado nada
 }
 
-export async function guardarCursos(cursos) {
+async function guardarDoc(archivo, datos) {
   exigirAlmacen();
   const actualizado = new Date().toISOString();
-  const cuerpo = JSON.stringify({ version: 1, actualizado, cursos }, null, 2);
+  const cuerpo = JSON.stringify({ version: 1, actualizado, ...datos }, null, 2);
   const dir = carpetaLocal();
   if (dir) {
-    await mkdir(dirname(join(dir, 'cursos.json')), { recursive: true });
-    await writeFile(join(dir, 'cursos.json'), cuerpo, 'utf8');
+    await mkdir(dirname(join(dir, `${archivo}.json`)), { recursive: true });
+    await writeFile(join(dir, `${archivo}.json`), cuerpo, 'utf8');
     return actualizado;
   }
   const base = { contentType: 'application/json; charset=utf-8', addRandomSuffix: false };
-  await conAcceso((modo) => put(RUTA, cuerpo, { ...base, access: modo, allowOverwrite: true, cacheControlMaxAge: 60 }));
+  await conAcceso((modo) => put(`hcd/${archivo}.json`, cuerpo, { ...base, access: modo, allowOverwrite: true, cacheControlMaxAge: 60 }));
   // Copia fechada de cada publicación, por si hay que volver atrás. Si falla, no importa.
   const sello = actualizado.replace(/[:.]/g, '-');
-  put(`hcd/respaldos/cursos-${sello}.json`, cuerpo, { ...base, access: acceso, allowOverwrite: false }).catch(() => {});
+  put(`hcd/respaldos/${archivo}-${sello}.json`, cuerpo, { ...base, access: acceso, allowOverwrite: false }).catch(() => {});
   return actualizado;
 }
+
+export const leerCursos = () => leerDoc('cursos');
+export const guardarCursos = (cursos) => guardarDoc('cursos', { cursos });
+export const leerAccesos = () => leerDoc('accesos');
+export const guardarAccesos = (grupos) => guardarDoc('accesos', { grupos });

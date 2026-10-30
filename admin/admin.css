@@ -146,6 +146,23 @@ dialog::backdrop { background: rgba(7, 15, 34, .55); }
 dialog h2 { margin-bottom: 18px; }
 .dialogo__acciones { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 18px; }
 
+/* Accesos */
+.intro { max-width: 720px; margin: -6px 0 18px; }
+.grupo { grid-template-columns: minmax(0, 1fr) auto; }
+.grupo__enlace { margin-top: 8px; overflow-wrap: anywhere; font-family: var(--mono); font-size: 13px; }
+.subtitulo { margin: 26px 0 10px; }
+.campo .suave { margin-top: 6px; }
+.dialogo-ancho { width: min(820px, calc(100% - 24px)); }
+.dialogo__acciones--izq { justify-content: flex-start; margin-top: 10px; }
+.tabla-caja { border: 1px solid var(--linea); border-radius: 12px; max-height: 340px; overflow: auto; }
+.tabla-alumnos { width: 100%; border-collapse: collapse; }
+.tabla-alumnos th { position: sticky; top: 0; background: var(--papel); text-align: left; font-size: 13px; padding: 8px 10px; border-bottom: 1px solid var(--linea); }
+.tabla-alumnos td { padding: 4px 6px; border-bottom: 1px solid #EEF0F5; }
+.tabla-alumnos input { min-height: 40px; padding: 6px 10px; font-size: 15px; }
+.tabla-pie { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+#g-error { margin: 16px 0 0; }
+#g-error ul { margin: 6px 0 0; padding-left: 18px; }
+
 /* Avisos */
 .avisos { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 100; display: grid; gap: 8px; width: min(520px, calc(100% - 24px)); pointer-events: none; }
 .toast { pointer-events: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; background: var(--tinta); color: var(--blanco); padding: 14px 18px; border-radius: 12px; font-size: 15px; box-shadow: 0 10px 30px rgba(7, 15, 34, .3); }
@@ -157,6 +174,7 @@ dialog h2 { margin-bottom: 18px; }
   .difusion { grid-template-columns: minmax(0, 1fr); }
   .controles { position: static; }
   .curso { grid-template-columns: 76px minmax(0, 1fr); }
+  .grupo { grid-template-columns: minmax(0, 1fr); }
   .curso__acciones { grid-column: 1 / -1; justify-content: flex-start; }
 }
 @media (max-width: 520px) {

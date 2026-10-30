@@ -44,6 +44,7 @@
   <div class="pestanas" role="tablist" aria-label="Secciones del panel">
     <button id="pestana-calendario" class="pestana" role="tab" type="button" aria-controls="vista-calendario" aria-selected="true">Calendario</button>
     <button id="pestana-difusion" class="pestana" role="tab" type="button" aria-controls="vista-difusion" aria-selected="false" tabindex="-1">Difusión</button>
+    <button id="pestana-accesos" class="pestana" role="tab" type="button" aria-controls="vista-accesos" aria-selected="false" tabindex="-1">Accesos</button>
   </div>
 
   <main class="contenido">
@@ -119,6 +120,17 @@
         </div>
       </div>
     </section>
+
+    <section id="vista-accesos" role="tabpanel" aria-labelledby="pestana-accesos" hidden>
+      <p id="accesos-bloqueo" class="aviso aviso--error" role="alert" hidden></p>
+      <div class="herramientas">
+        <h2>Accesos de alumnos</h2>
+        <button id="btn-nuevo-grupo" class="btn btn--primario" type="button">Agregar grupo</button>
+      </div>
+      <p class="suave intro">Cada grupo es una empresa con su lista de alumnos, ID y contraseña del portal. Comparte el enlace del grupo: el alumno busca su nombre y entra al portal con sus datos ya escritos.</p>
+      <ul id="lista-grupos" class="lista"></ul>
+      <p id="grupos-vacio" class="vacio" hidden>Todavía no hay grupos. Pulsa <strong>Agregar grupo</strong>, escribe la empresa y pega la lista de alumnos.</p>
+    </section>
   </main>
 </div>
 
@@ -168,6 +180,67 @@
       <button class="btn btn--texto" type="button" id="f-cancelar">Cancelar</button>
       <button class="btn" type="submit" value="guardar">Guardar sin publicar</button>
       <button class="btn btn--primario" type="submit" value="publicar">Guardar y publicar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-grupo" class="dialogo-ancho" aria-labelledby="dlg-grupo-titulo">
+  <form id="form-grupo" method="dialog">
+    <h2 id="dlg-grupo-titulo">Agregar grupo</h2>
+    <div class="fila2">
+      <div class="campo">
+        <label for="g-empresa">Empresa</label>
+        <input id="g-empresa" type="text" maxlength="80" autocomplete="off" required>
+      </div>
+      <div class="campo">
+        <label for="g-modalidad">Modalidad</label>
+        <select id="g-modalidad">
+          <option value="">Sin indicar</option>
+          <option>Presencial</option>
+          <option>Online</option>
+          <option>Mixto</option>
+        </select>
+      </div>
+    </div>
+    <div class="campo">
+      <label for="g-slug">Dirección del enlace</label>
+      <input id="g-slug" type="text" maxlength="40" autocomplete="off" spellcheck="false" required aria-describedby="g-slug-ayuda">
+      <p id="g-slug-ayuda" class="suave">Quedará como hablandocondatos.com/acceso/<strong>esta-direccion</strong>. Solo letras sin acento, números y guiones.</p>
+    </div>
+    <div class="campo">
+      <label for="g-pin">Código del grupo <span class="suave">(opcional)</span></label>
+      <input id="g-pin" type="text" maxlength="12" autocomplete="off" spellcheck="false" aria-describedby="g-pin-ayuda">
+      <p id="g-pin-ayuda" class="suave">Si lo pones, el alumno debe escribirlo para ver la lista. Úsalo para que solo entre quien estuvo en el curso. De 4 a 12 letras o números.</p>
+    </div>
+    <label class="check"><input id="g-activo" type="checkbox" checked> Grupo encendido (el enlace funciona)</label>
+
+    <h3 class="subtitulo">Alumnos</h3>
+    <div class="campo">
+      <label for="g-pegar">Pegar lista</label>
+      <textarea id="g-pegar" rows="4" spellcheck="false" placeholder="Nombre    ID    Contraseña&#10;Ana López    ALU-0132    HCD-1234"></textarea>
+      <p class="suave">Una persona por línea con tres datos: <strong>Nombre, ID y Contraseña</strong>. Puedes copiarlas de Excel (tres columnas) o separarlas con punto y coma.</p>
+      <div class="dialogo__acciones dialogo__acciones--izq">
+        <button id="g-agregar" class="btn btn--chico" type="button">Agregar a la lista</button>
+        <button id="g-reemplazar" class="btn btn--chico" type="button">Reemplazar toda la lista</button>
+      </div>
+      <p id="g-pegar-aviso" class="suave" role="status" hidden></p>
+    </div>
+
+    <div class="tabla-caja">
+      <table class="tabla-alumnos">
+        <thead><tr><th scope="col">Nombre</th><th scope="col">ID</th><th scope="col">Contraseña</th><th scope="col"><span class="oculto-visual">Acciones</span></th></tr></thead>
+        <tbody id="tabla-alumnos"></tbody>
+      </table>
+    </div>
+    <div class="tabla-pie">
+      <button id="g-fila" class="btn btn--chico" type="button">Agregar alumno</button>
+      <span id="conteo-alumnos" class="suave" role="status"></span>
+    </div>
+
+    <div id="g-error" class="aviso aviso--error" role="alert" hidden></div>
+    <div class="dialogo__acciones">
+      <button id="g-cancelar" class="btn btn--texto" type="button">Cancelar</button>
+      <button id="g-guardar" class="btn btn--primario" type="submit">Guardar grupo</button>
     </div>
   </form>
 </dialog>

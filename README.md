@@ -30,6 +30,14 @@ Página oculta (noindex, sin enlaces desde el sitio) para publicar cursos y gene
 
 Arquitectura: funciones de Vercel en `api/` + Vercel Blob (`hcd/cursos.json`, con respaldos fechados). `GET /api/cursos` es público; si no hay nada publicado o la API falla, el sitio usa `cursos.json` como respaldo.
 
+### Accesos de alumnos (`/acceso/<grupo>`)
+
+Pestaña **Accesos** del panel: cada grupo es una empresa con su lista de alumnos (nombre, ID y contraseña del portal). Se pegan desde Excel y se guardan en Blob (`hcd/accesos.json`), sin tocar el código.
+
+- Página pública: `/acceso/<dirección>`. Lista solo nombres; las credenciales se piden una por una al confirmar (`GET /api/acceso?g=<grupo>&e=<alumno>`).
+- Código de grupo opcional (cabecera `x-codigo`): sin él no se ve ni un nombre.
+- Al confirmar, redirige a `https://certificados.hablandocondatos.com/estudiante/acceso#u=<ID>&p=<contraseña>`. El portal (`hcd-certificados`, `EstudianteAcceso.jsx`) lee el fragmento, rellena los campos y lo borra de la barra de direcciones.
+
 ### Configuración en Vercel (una vez)
 
 1. Storage → crear un **Blob store** (recomendado *Private*) y conectarlo al proyecto (crea `BLOB_READ_WRITE_TOKEN`).

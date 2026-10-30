@@ -2,6 +2,7 @@
 // Todo el texto que viene de datos se inserta con textContent, nunca con innerHTML.
 
 import { FORMATOS, dibujar, nombreArchivo, textoRedes, textoWhatsApp } from '/admin/arte.js';
+import { iniciarAccesos } from '/admin/accesos.js';
 import { MESES_CORTO, cuandoCorto, dd, esPasado, partes, tieneRango } from '/admin/fechas.js';
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -367,8 +368,10 @@ async function copiarTexto() {
 
 /* ───────────── pestañas ───────────── */
 
+const PESTANAS = [['calendario', 'vista-calendario'], ['difusion', 'vista-difusion'], ['accesos', 'vista-accesos']];
+
 function cambiarPestana(cual) {
-  for (const [id, vista] of [['calendario', 'vista-calendario'], ['difusion', 'vista-difusion']]) {
+  for (const [id, vista] of PESTANAS) {
     const activa = id === cual;
     const p = $(`#pestana-${id}`);
     p.setAttribute('aria-selected', String(activa));
@@ -376,7 +379,13 @@ function cambiarPestana(cual) {
     $(`#${vista}`).hidden = !activa;
   }
   if (cual === 'difusion') renderDifusion();
+  if (cual === 'accesos') accesos.cargar();
 }
+
+const accesos = iniciarAccesos({
+  $, h, api, avisar,
+  alSesionVencida: () => mostrarLogin({ error: 'Tu sesión venció. Entra de nuevo.' }),
+});
 
 /* ───────────── arranque ───────────── */
 
@@ -441,6 +450,7 @@ $('#btn-salir').addEventListener('click', async () => {
   await api('/api/admin/sesion', { metodo: 'DELETE' }).catch(() => {});
   S.cargado = false;
   S.cursos = [];
+  accesos.reiniciar();
   mostrarLogin();
 });
 
@@ -451,10 +461,13 @@ $('#f-cancelar').addEventListener('click', () => dlg.close());
 $('#form-curso').addEventListener('submit', (e) => { e.preventDefault(); guardarDesdeFormulario(e.submitter?.value || 'guardar'); });
 $('#controles').addEventListener('submit', (e) => e.preventDefault());
 
-for (const id of ['calendario', 'difusion']) $(`#pestana-${id}`).addEventListener('click', () => cambiarPestana(id));
+for (const [id] of PESTANAS) $(`#pestana-${id}`).addEventListener('click', () => cambiarPestana(id));
 $('.pestanas').addEventListener('keydown', (e) => {
   if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-  const sig = document.activeElement.id === 'pestana-calendario' ? 'difusion' : 'calendario';
+  const ids = PESTANAS.map(([id]) => id);
+  const actual = ids.indexOf(document.activeElement.id.replace('pestana-', ''));
+  if (actual < 0) return;
+  const sig = ids[(actual + (e.key === 'ArrowRight' ? 1 : ids.length - 1)) % ids.length];
   cambiarPestana(sig);
   $(`#pestana-${sig}`).focus();
 });

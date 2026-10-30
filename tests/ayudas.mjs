@@ -1,10 +1,10 @@
 // Utilidades para probar los handlers sin servidor: un req y un res mínimos.
-export function pedir(metodo, { cuerpo, cookie, origen, host = 'sitio.test', tipo = 'application/json' } = {}) {
-  const headers = { host };
+export function pedir(metodo, { cuerpo, cookie, origen, host = 'sitio.test', tipo = 'application/json', url = '/', cabeceras = {} } = {}) {
+  const headers = { host, ...cabeceras };
   if (cookie) headers.cookie = cookie;
   if (origen) headers.origin = origen;
   if (cuerpo !== undefined) headers['content-type'] = tipo;
-  return { method: metodo, headers, body: cuerpo };
+  return { method: metodo, headers, body: cuerpo, url };
 }
 
 export function respuesta() {

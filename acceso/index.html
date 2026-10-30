@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>Acceso al portal · Hablando con Datos</title>
+<link rel="icon" href="/assets/logo-hcd.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/acceso/acceso.css">
+</head>
+<body>
+<main class="pagina">
+  <header class="marca">
+    <img src="/assets/logo-hcd.png" alt="" width="56" height="56">
+    <div>
+      <p class="etiqueta">Acceso al portal de certificados</p>
+      <h1 id="empresa">Hablando con Datos</h1>
+      <p id="modalidad" class="modalidad" hidden></p>
+    </div>
+  </header>
+
+  <p id="estado" class="estado" role="status">Cargando…</p>
+
+  <section id="vista-codigo" hidden>
+    <form id="form-codigo" class="caja">
+      <label for="codigo">Código del grupo</label>
+      <p class="ayuda">Te lo da tu instructor en el curso.</p>
+      <input id="codigo" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+      <p id="codigo-error" class="error" role="alert" hidden></p>
+      <button class="boton boton--primario" type="submit">Continuar</button>
+    </form>
+  </section>
+
+  <section id="vista-lista" hidden>
+    <p class="guia">Busca tu nombre y tócalo. Te llevaremos al portal con tu ID y contraseña ya escritos; solo pulsa <strong>Entrar</strong>.</p>
+    <label class="oculto" for="buscar">Buscar tu nombre</label>
+    <input id="buscar" type="search" placeholder="Buscar tu nombre…" autocomplete="off" spellcheck="false">
+    <p id="conteo" class="conteo" role="status"></p>
+    <ul id="nombres" class="nombres"></ul>
+    <p id="sin-resultados" class="estado" hidden>No encontramos ese nombre. Revisa cómo lo escribiste o pídele ayuda a tu instructor.</p>
+  </section>
+
+  <div id="hoja" class="hoja" role="dialog" aria-modal="true" aria-labelledby="hoja-titulo" hidden>
+    <div class="hoja__fondo" data-cerrar></div>
+    <div class="hoja__caja">
+      <p class="etiqueta">Confirma que eres tú</p>
+      <h2 id="hoja-titulo"></h2>
+      <p id="hoja-id" class="hoja__id"></p>
+      <p id="hoja-estado" class="estado" role="status" hidden></p>
+      <div id="hoja-datos" class="datos" hidden>
+        <p>ID: <strong id="datos-usuario"></strong></p>
+        <p>Contraseña: <strong id="datos-clave"></strong></p>
+      </div>
+      <button id="btn-si" class="boton boton--primario" type="button">Sí, soy yo — ir al portal</button>
+      <button id="btn-datos" class="boton boton--texto" type="button">Mostrar mis datos</button>
+      <button id="btn-no" class="boton boton--texto" type="button" data-cerrar>No soy yo</button>
+    </div>
+  </div>
+
+  <footer class="pie">HABLANDO CON DATOS · PORTAL DE ESTUDIANTE</footer>
+</main>
+<script type="module" src="/acceso/acceso.js"></script>
+</body>
+</html>
